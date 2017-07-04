@@ -1,0 +1,14 @@
+./CFD_Bench/runCase.sh
+./Filebench_Arch64_CentOS/Filebench_Workloads/varmail.sh
+./Filebench_Arch64_CentOS/Filebench_Workloads/webproxy.sh
+./Filebench_Arch64_CentOS/Filebench_Workloads/webserver.sh
+./Filebench_Arch64_CentOS/Filebench_Workloads/videoserver.sh
+./Filebench_Arch64_CentOS/Filebench_Workloads/fileserver.sh
+./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/avrora.sh
+./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/eclipse.sh
+./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/fop.sh
+./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/h2.sh
+./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/jython.sh
+./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/pmd.sh
+./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/tomcat.sh
+./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/xalam.sh

@@ -1,0 +1,15 @@
+{
+  "UserName":"",
+  "password":"",
+  "firstName":"",
+  "LastName":"",
+  "userID":"",
+  "userAuth":"",
+  "Messages":[{
+    "text":"",
+    "timestamp":"",
+    "read":true
+  }]
+
+
+}

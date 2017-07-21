@@ -12,3 +12,9 @@
 ./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/pmd.sh
 ./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/tomcat.sh
 ./DaCapo_NoArch_AllPlatform/DaCapo_Workloads/xalam.sh
+./new_ycsb/ycsb-jdbc-binding-0.12.0/YCSB_workloads/workloada.sh
+./new_ycsb/ycsb-jdbc-binding-0.12.0/YCSB_workloads/workloadb.sh
+./new_ycsb/ycsb-jdbc-binding-0.12.0/YCSB_workloads/workloadc.sh
+./new_ycsb/ycsb-jdbc-binding-0.12.0/YCSB_workloads/workloadd.sh
+./new_ycsb/ycsb-jdbc-binding-0.12.0/YCSB_workloads/workloade.sh
+./new_ycsb/ycsb-jdbc-binding-0.12.0/YCSB_workloads/workloadf.sh

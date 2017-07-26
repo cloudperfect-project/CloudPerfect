@@ -132,7 +132,7 @@ highest = []
 
 bin_size = config.getint('bins','bin_size'); #bin_size = 10000 for example;  # binsize has to be chosen carefully.
 min_edge = config.getint('bins','min_edge'); #0
-max_edge = config.getint('bins','max_edge'); #100000 (use 10 Giga, 10 GbE)
+max_edge = config.getint('bins','max_edge'); #100000 for example; (use 10 Gigabit, 10 GbE)
 N = (max_edge - min_edge) / bin_size;
 Nplus1 = N + 1
 bins = np.linspace(min_edge, max_edge, Nplus1)

@@ -180,7 +180,7 @@ for currentHost in hosts:
 
     # calculate convolution and printing to file
     convolution.append(calculate_convolution(probabilities[-1]))
-    sys.stdout = open(os.path.join('outputfolder','convolution_' + str(hosts.index(currentHost))), 'w')
+    sys.stdout = open(os.path.join('outputfolder','overlay_' + str(hosts.index(currentHost))), 'w')
     print (convolution[-1])
 
     # combine bwstates and with convolution result and printing to file

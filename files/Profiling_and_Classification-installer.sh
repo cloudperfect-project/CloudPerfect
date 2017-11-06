@@ -6,12 +6,28 @@ echo "Profiler installation path: $path";
 #comment next command and uncomment previous...
 #path='/home/fot/Desktop/workspace';
 
-#Create profiler folder and download jar and benchmark commands
+echo -n "Please specify the installation mode (Type 'p' for IaaS Provider and 'a' for Cloud Adopter)> ";
+read mode;
+echo "Tool installation mode: $mode";
+
+#Create profiler folder and download jar 
 mkdir  -p  $path/profiler;
 sudo chmod 777 $path/profiler;
 wget https://github.com/cloudperfect-project/CloudPerfect/raw/master/files/ProfilingTool-fot.jar -O $path/profiler/latest-profiler.jar;
+
+	
+#Download benchmark commands list (adopter mode) or benchmark names list for benchmarking suite (provider mode)
+if [ "$mode" = "a" ]; then
+
 wget https://github.com/cloudperfect-project/CloudPerfect/raw/master/files/benchmark_workloads.txt -O $path/profiler/benchmark_workloads.txt;
-sudo chmod 777 $path/profiler/benchmark_workloads.txt
+
+else
+wget https://github.com/cloudperfect-project/CloudPerfect/raw/master/files/benchmark_workloads_list.txt -O $path/profiler/benchmark_workloads.txt;
+
+fi
+
+sudo chmod 777 $path/profiler/benchmark_workloads.txt;
+
 
 #Create classifier folder and download jar 
 mkdir  -p  $path/classifier;
@@ -34,27 +50,8 @@ path=\$(dirname \"\$0\")
 cd \$path/
 
 NoGUI=\"\$1\"
-if [ \"\$NoGUI\" != \"\" ]; then
-	java -jar ClassificationTool.jar \$NoGUI
-else
-	java -jar ClassificationTool.jar
-fi" > $path/classifier/classifier-run.sh;
-
-#Create conf.ini file for classifier
-echo "
-[classification]
-engine=knn
-
-[database]
-host=localhost
-port=3306
-user=root	
-pass=1234
-db=azure
-
-[service_efficiency]
-price_weight=0.5
-performance_weight=0.5" > $path/classifier/conf.ini;
+ProviderMode=\"\$2\"
+java -jar ClassificationTool.jar \$NoGUI \$ProviderMode" > $path/classifier/classifier-run.sh;
 
 #Create run script for profiler
 echo "#!/usr/bin/env bash
@@ -62,10 +59,16 @@ echo "#!/usr/bin/env bash
 Arg1=\"\$1\"
 Arg2=\"\$2\"
 Arg3=\"\$3\"
+Arg4=\"\$4\"
 
 if [ -n \"\$Arg1\" -a  -n \"\$Arg2\" -a  -n \"\$Arg3\" ]; then
 	cd $path/profiler/
-	java -jar latest-profiler.jar \$Arg1 \$Arg2 \$Arg3
+	java -jar latest-profiler.jar \$Arg1 \$Arg2 \$Arg3 \$Arg4
+
+	if [ \"\$Arg2\" = \"application\" ]; then
+		sh /home/fot/Desktop/workspace/classifier/classifier-run.sh NoGUI \$Arg4
+	fi
+
 else
 
 passwd='nopass';
@@ -107,16 +110,61 @@ fi" > $path/profiler/profiler-run.sh;
 
 sudo chmod 777 $path/profiler/profiler-run.sh;
 
-#Create Profiler template info.txt files, for runtime input parameters
+	
+#Create conf.ini file in classifier folder and template info configuration files
+if [ "$mode" = "a" ]; then
+echo "
+[classification]
+engine=knn
+
+[database]
+host=147.102.19.75
+port=27080
+user=scores
+pass=cloud
+db=benchsuite
+
+[service_efficiency]
+price_weight=0.5
+performance_weight=0.5
+performance_metric=read_ops" > $path/classifier/conf.ini;
+
 echo "$path/profiler
 Replace_With_VM_Process_ID,Replace_with_profiling_duration(seconds)
 Replace_With_Host_IP,Replace_With_Host_Interface" > $path/profiler/application-info.txt;
 sudo chmod 777 $path/profiler/application-info.txt;
+
 echo "$path/profiler
 Replace_With_VM_Process_ID
 Replace_With_Host_IP,Replace_With_Host_Interface
 Replace_With_Benchmark_VM_IP,Replace_With_Benchmark_VM_Username,$path/profiler/benchmark_workloads.txt,Replace_With_Benchmark_VM_UserPassword,Replace_With_Benchmark_VM_RootPassword" > $path/profiler/benchmark-info.txt;
 sudo chmod 777 $path/profiler/benchmark-info.txt;
+
+else
+echo "
+[classification]
+engine=knn
+
+[database]
+host=localhost
+port=3306
+user=root	
+pass=cloud
+db=profiler" > $path/classifier/conf.ini;
+
+echo "$path/profiler
+Replace_With_APPLICATION_VM_ID,300
+Replace_With_Ceilometer_Host_IP,Ceilometer_Auth_token" > $path/profiler/application-provider-info.txt;
+sudo chmod 777 $path/profiler/application-info.txt;
+
+echo "$path/profiler
+Replace_With_Benchmark_Suite_URL
+Replace_With_Benchmark_Suite_Provider_ID,Replace_With_NeededVM_Type_Size,$path/profiler/benchmark_workloads.txt" > $path/profiler/benchmark-provider-info.txt;
+sudo chmod 777 $path/profiler/benchmark-provider-info.txt;
+
+fi
+
+
 
 echo "Profiler successfully installed at: $path/profiler
 You can run via the profiler-run.sh script (Please read the documentation for input arguments).";

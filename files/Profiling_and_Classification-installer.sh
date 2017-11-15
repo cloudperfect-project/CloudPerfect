@@ -120,14 +120,14 @@ engine=knn
 [database]
 host=147.102.19.75
 port=27080
-user=scores
+user=results
 pass=cloud
-db=benchsuite
+db=benchmarking
 
 [service_efficiency]
 price_weight=0.5
 performance_weight=0.5
-performance_metric=read_ops" > $path/classifier/conf.ini;
+performance_metric=duration" > $path/classifier/conf.ini;
 
 echo "$path/profiler
 Replace_With_VM_Process_ID,Replace_with_profiling_duration(seconds)

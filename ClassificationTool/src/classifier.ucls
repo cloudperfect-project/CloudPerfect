@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="eu.artist.migration.ct.classifier.KnnClassifier" project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/classifier/KnnClassifier.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="617" width="494" x="839" y="417"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="eu.artist.migration.ct.classifier.Workload" project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/classifier/Workload.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="131" width="141" x="409" y="-88"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="eu.artist.migration.ct.controller.DbConnection" project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/controller/DbConnection.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1101" y="276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="eu.artist.migration.ct.common.IniReader" project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/common/IniReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="293" width="180" x="590" y="-88"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="eu.artist.migration.ct.classifier.ProfileResultsReader" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/classifier/ProfileResultsReader.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="95" width="252" x="2168" y="-88"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="eu.artist.migration.ct.controller.WorkloadInfo" project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/controller/WorkloadInfo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="239" width="219" x="820" y="-88"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="eu.artist.migration.ct.controller.ProviderEfficiency" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/controller/ProviderEfficiency.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="257" width="305" x="1089" y="-88"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="eu.artist.migration.ct.controller.ClassificationController" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/controller/ClassificationController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="347" width="417" x="1373" y="417"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="eu.artist.migration.ct.classifier.ApplicationWorkload" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/classifier/ApplicationWorkload.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="77" width="142" x="318" y="417"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="10" language="java" name="eu.artist.migration.ct.controller.NormalizationType" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/controller/NormalizationType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="167" width="254" x="959" y="1074"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="11" language="java" name="eu.artist.migration.ct.classifier.BenchmarkProfileReader" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/classifier/BenchmarkProfileReader.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="221" width="305" x="1830" y="417"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="eu.artist.migration.ct.ui.Main" project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/ui/Main.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="114" x="1434" y="-88"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="eu.artist.migration.ct.classifier.BenchmarkWorkload" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/classifier/BenchmarkWorkload.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="239" width="214" x="500" y="417"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="eu.artist.migration.ct.ui.MainForm" project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/ui/MainForm.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="455" width="254" x="1864" y="-88"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="eu.artist.migration.ct.classifier.ApplicationProfileReader" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/classifier/ApplicationProfileReader.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="329" width="245" x="2175" y="417"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="eu.artist.migration.ct.common.Constants" project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/common/Constants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="149" width="236" x="1588" y="-88"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="17" language="java" name="eu.artist.migration.ct.controller.SimilarityMeasure" 
+    project="Classification tool" 
+    file="/Classification tool/src/eu/artist/migration/ct/controller/SimilarityMeasure.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="131" width="213" x="1253" y="1074"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <association id="18">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="19" name="normalization"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="21">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="22" name="instance"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="25" name="window"/>      
+      <multiplicity id="26" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="30">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="31" name="controller"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="34" name="similarity"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <association id="37">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="38" name="normalization"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="41" name="workloadInfos"/>      
+      <multiplicity id="42" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="44" name="similarity"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

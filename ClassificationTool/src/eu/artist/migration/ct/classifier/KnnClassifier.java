@@ -1,5 +1,6 @@
 package eu.artist.migration.ct.classifier;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import eu.artist.migration.ct.common.Constants;
+import eu.artist.migration.ct.controller.DbConnection;
 import eu.artist.migration.ct.controller.NormalizationType;
 import eu.artist.migration.ct.controller.SimilarityMeasure;
 
@@ -18,6 +20,7 @@ public class KnnClassifier {
 	private int k;
 	private SimilarityMeasure similarity;
 	private NormalizationType normalization;
+	
 	
 	public String getPidstatFileName() {
 		return pidstatFileName;
@@ -60,6 +63,13 @@ public class KnnClassifier {
 		this.pidstatFileName = pidstatFileName;
 		this.tsharkFileName = tsharkFileName;
 		this.trainingFileName = trainingFileName;
+		this.similarity = similarity;
+		this.normalization = normalization;
+	}
+	
+	//FOT: added method for provider mode
+	public KnnClassifier(SimilarityMeasure similarity, NormalizationType normalization) {
+		this();
 		this.similarity = similarity;
 		this.normalization = normalization;
 	}
@@ -136,13 +146,13 @@ public class KnnClassifier {
 		}
 		Collections.sort(workloads);
 		
-		System.out.println("\n\n\n");
-		System.out.println("Classifier: Knn\tNormalization: " + normalization.name() + "\tSimilarity: " + similarity.name());
-		System.out.println("----------------- Results Knn Begin -----------------");
-		for (int i = 0; i < workloads.size(); i++) {
-			System.out.println(i + "\t" + workloads.get(i));
-		}
-		System.out.println("-----------------  Results Knn End  -----------------");
+		//System.out.println("\n\n\n");
+		//System.out.println("Classifier: Knn\tNormalization: " + normalization.name() + "\tSimilarity: " + similarity.name());
+		//System.out.println("----------------- Results Knn Begin -----------------");
+		//for (int i = 0; i < workloads.size(); i++) {
+		//	System.out.println(i + "\t" + workloads.get(i));
+		//}
+		//System.out.println("-----------------  Results Knn End  -----------------");
 		
 		ArrayList<BenchmarkWorkload> result = new ArrayList<BenchmarkWorkload>(k);
 		for (int i = 0; i < k; i++) {
@@ -323,6 +333,59 @@ public class KnnClassifier {
 		}
 	}
 	
+	//FOT: new method added for Provider mode
+	public String calculateClassification(String vm_id, Connection connection) throws Exception {
+		
+		connection = DbConnection.getConnection();
+		DatabaseProfileReader appReader  = new DatabaseProfileReader (vm_id);
+		ApplicationWorkload applicationWorkload = appReader.getWorkloadFromDB(connection);
+		DatabaseProfileReader benchReader = new DatabaseProfileReader();
+		ArrayList<BenchmarkWorkload> benchmarkWorkloads = benchReader.getWorkloadsFromDB(connection);
+		ApplicationWorkload tmp = applicationWorkload;
+
+		//applicationWorkload = null;
+		switch (normalization) {
+		case DeviationNormalizationPow:
+			normalizeWorkloadsByDeviationPow(benchmarkWorkloads, applicationWorkload);
+			break;
+		case DeviationNormalizationAbs:
+			normalizeWorkloadsByDeviationAbs(benchmarkWorkloads, applicationWorkload);
+			break;
+		case DeviationNormalization:
+			normalizeWorkloadsByDeviation(benchmarkWorkloads, applicationWorkload);
+			break;
+		case RangeNormalization:
+			normalizeWorkloads(benchmarkWorkloads, applicationWorkload);
+			break;
+		default:
+			break;
+		}
+		applicationWorkload = tmp;
+		//System.out.println("Normalized values of Benchmark dataset:");
+		//for (int i = 0; i < benchmarkWorkloads.size(); i++) {
+		//	System.out.println(benchmarkWorkloads.get(i).getValuesToString());
+		//}
+		//System.out.println("\n\n\n");
+		List<BenchmarkWorkload> knn = null;
+		if (benchmarkWorkloads.size() < k) {
+			knn = calculate_knn(benchmarkWorkloads.size(), applicationWorkload, benchmarkWorkloads);
+		}
+		else {
+			knn = calculate_knn(k, applicationWorkload, benchmarkWorkloads);
+		}
+		
+		
+		String queryClassification = getWorkloadClassification(applicationWorkload, knn);
+		if (queryClassification == null) {
+			System.out.println("classification failed");
+		}
+		else {
+			//System.out.println("To kontinotero workload einai to: " + queryClassification);
+		}
+		
+		return queryClassification;
+	}
+	
 	public String calculateClassification() throws Exception {
 		ApplicationProfileReader appReader = new ApplicationProfileReader(pidstatFileName, tsharkFileName);
 		ApplicationWorkload applicationWorkload = appReader.getWorkloadFromFiles();
@@ -348,11 +411,11 @@ public class KnnClassifier {
 			break;
 		}
 		applicationWorkload = tmp;
-		System.out.println("Normalized values of Benchmark dataset:");
-		for (int i = 0; i < benchmarkWorkloads.size(); i++) {
-			System.out.println(benchmarkWorkloads.get(i).getValuesToString());
-		}
-		System.out.println("\n\n\n");
+		//System.out.println("Normalized values of Benchmark dataset:");
+		//for (int i = 0; i < benchmarkWorkloads.size(); i++) {
+		//	System.out.println(benchmarkWorkloads.get(i).getValuesToString());
+		//}
+		//System.out.println("\n\n\n");
 		List<BenchmarkWorkload> knn = null;
 		if (benchmarkWorkloads.size() < k) {
 			knn = calculate_knn(benchmarkWorkloads.size(), applicationWorkload, benchmarkWorkloads);
@@ -364,10 +427,10 @@ public class KnnClassifier {
 		
 		String queryClassification = getWorkloadClassification(applicationWorkload, knn);
 		if (queryClassification == null) {
-			System.out.println("To classification apetuxe");
+			System.out.println("classification failed");
 		}
 		else {
-			System.out.println("To kontinotero workload einai to: " + queryClassification);
+			//System.out.println("To kontinotero workload einai to: " + queryClassification);
 		}
 		
 		return queryClassification;

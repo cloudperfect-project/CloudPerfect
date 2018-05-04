@@ -124,6 +124,15 @@ public class IniReader {
 		
 		return ret;
 	}
+	
+	public String getPerformanceMetric() {
+		if (iniFile == null) {
+			//Default value if ini file does not exist
+			return "";
+		}
+		
+		return iniFile.get("service_efficiency", "performance_metric");
+	}
 }
 
 

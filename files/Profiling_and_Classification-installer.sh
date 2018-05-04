@@ -38,11 +38,6 @@ wget https://github.com/cloudperfect-project/CloudPerfect/raw/master/files/Class
 mkdir  -p  $path/profiler/tmp;
 sudo chmod 777 $path/profiler/tmp;
 
-#Download and install tshark & sysstat applications
-command -v tshark >/dev/null 2>&1 || { sudo apt-get install tshark; }
-command -v sysstat >/dev/null 2>&1 || { sudo apt-get install sysstat; }
-
-
 #Create run script for classifier
 echo "#!/usr/bin/env bash
 
@@ -66,7 +61,7 @@ if [ -n \"\$Arg1\" -a  -n \"\$Arg2\" -a  -n \"\$Arg3\" ]; then
 	java -jar latest-profiler.jar \$Arg1 \$Arg2 \$Arg3 \$Arg4
 
 	if [ \"\$Arg2\" = \"application\" ]; then
-		sh /home/fot/Desktop/workspace/classifier/classifier-run.sh NoGUI \$Arg4
+		sh $path/classifier/classifier-run.sh NoGUI \$Arg4
 	fi
 
 else
@@ -113,6 +108,11 @@ sudo chmod 777 $path/profiler/profiler-run.sh;
 	
 #Create conf.ini file in classifier folder and template info configuration files
 if [ "$mode" = "a" ]; then
+
+#Download and install tshark & sysstat applications
+command -v tshark >/dev/null 2>&1 || { sudo apt-get install tshark; }
+command -v sysstat >/dev/null 2>&1 || { sudo apt-get install sysstat; }
+
 echo "
 [classification]
 engine=knn
@@ -140,6 +140,7 @@ Replace_With_Host_IP,Replace_With_Host_Interface
 Replace_With_Benchmark_VM_IP,Replace_With_Benchmark_VM_Username,$path/profiler/benchmark_workloads.txt,Replace_With_Benchmark_VM_UserPassword,Replace_With_Benchmark_VM_RootPassword" > $path/profiler/benchmark-info.txt;
 sudo chmod 777 $path/profiler/benchmark-info.txt;
 
+
 else
 echo "
 [classification]
@@ -154,12 +155,13 @@ db=profiler" > $path/classifier/conf.ini;
 
 echo "$path/profiler
 Replace_With_APPLICATION_VM_ID,300
-Replace_With_Ceilometer_Host_IP,Ceilometer_Auth_token" > $path/profiler/application-provider-info.txt;
-sudo chmod 777 $path/profiler/application-info.txt;
+Replace_With_Ceilometer_Host_IP,Replace_With_Ceilometer_Auth_token" > $path/profiler/application-provider-info.txt;
+sudo chmod 777 $path/profiler/application-provider-info.txt;
 
 echo "$path/profiler
 Replace_With_Benchmark_Suite_URL
-Replace_With_Benchmark_Suite_Provider_ID,Replace_With_NeededVM_Type_Size,$path/profiler/benchmark_workloads.txt" > $path/profiler/benchmark-provider-info.txt;
+Replace_With_Benchmark_Suite_Provider_ID,Replace_With_NeededVM_Type_Size,$path/profiler/benchmark_workloads.txt
+Replace_With_Ceilometer_Host_IP,Replace_With_Ceilometer_Auth_token" >  > $path/profiler/benchmark-provider-info.txt;
 sudo chmod 777 $path/profiler/benchmark-provider-info.txt;
 
 fi

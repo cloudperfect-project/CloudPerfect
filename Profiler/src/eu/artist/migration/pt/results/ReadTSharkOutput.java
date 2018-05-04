@@ -85,24 +85,29 @@ public class ReadTSharkOutput {
 		
 		while ((line = bufferedReader.readLine()) != null)
 		{
-			if (line.contains("Number")){
-				line=line.substring(21);
+			if (line.contains("Number of packets = ")){
+				line=line.substring(41);
 				
-				//FOT cut text from profiles...
+				/*FOT cut text from profiles...
 				try
 				{
+				  line = line.replace(" k", "000");
 				  Double.parseDouble(line);
 				}
 				catch(NumberFormatException e)
 				{
+				  
 				  continue;
 				}
 				//end of addition
-
-				list.add(line);
+				*/
+				list.add(0,line);
 			}
 			else if (line.contains("byte") && line.contains("rate")){
 				line=line.substring(21);
+				
+				//FOT multiple by 1000 in case of kbps
+				line = line.replace(" kBps", "000 bytes/s");
 				String[] mline=line.split(" ");
 				line=mline[0];
 				list.add(line);
@@ -166,33 +171,43 @@ public class ReadTSharkOutput {
 		String line;
 		ArrayList<String> list;
 		list=new ArrayList<String>();
-			
+					
 		while ((line = bufferedReader.readLine()) != null)
 		{
-			if (line.contains("Number")){
-				line=line.substring(21);
+			if (line.contains("Number of packets = ")){
 				
-				//FOT cut text from profiles...
+				line=line.substring(41);
+				
+				/*FOT cut text from profiles...
 				try
 				{
+				  //System.out.println("Normalizing network values in results..."+line); 
+				  line = line.replace(" k", "000");
 				  Double.parseDouble(line);
 				}
 				catch(NumberFormatException e)
 				{
+			      
 				  continue;
 				}
 				//end of addition
-				
-				list.add(line);
+				*/
+				list.add(0,line);
 			}
 			else if (line.contains("byte") && line.contains("rate")){
+				
 				line=line.substring(21);
+				
+				//FOT multiple by 1000 in case of kbps
+				line=line.replace(" kBps", "000 bytes/s");
+								
 				String[] mline=line.split(" ");
 				line=mline[0];
 				list.add(line);
 			}
 			else if (line.contains("verage") && line.contains("rate")){
 				line=line.substring(21);
+			
 				String[] mline=line.split(" ");
 				line=mline[0];
 				list.add(line);

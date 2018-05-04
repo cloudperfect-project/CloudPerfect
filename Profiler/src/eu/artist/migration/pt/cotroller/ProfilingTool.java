@@ -36,14 +36,28 @@ public class ProfilingTool {
 			}
 		}else if (args.length==3){
 			if (args[1].equals("application")){
-				new ControllerUserApp(args[0], args[2]);
+				new ControllerUserApp(args[0], args[2], false);
 			}
 			else if (args[1].equals(("benchmarks"))){
-				new ControllerBench(args[0], args[2]);
+				new ControllerBench(args[0], args[2], false);
 			}
 			else {
 				System.out.println("Mispelled input parameter... Must choose the profiling type by providing the argument: \"application\" or \"benchmarks\"");
 			}
+			//Run in Provider case, must call REST services for benchmarks / Ceilometer for results (IPs to be taken by conf file!)
+		}else if (args.length==4){
+			if (args[3].equals("-p")){
+				System.out.println("Running in Provider mode...");
+				if (args[1].equals("application")){
+					new ControllerUserApp(args[0], args[2], true);
+				}
+				else if (args[1].equals(("benchmarks"))){
+					new ControllerBench(args[0], args[2], true);
+				}
+				else {
+					System.out.println("Mispelled input parameter... Must choose the profiling type by providing the argument: \"application\" or \"benchmarks\"");
+				}
+			}	
 		}
 		else System.out.println("Wrong number of "
 				+ "arguments!");

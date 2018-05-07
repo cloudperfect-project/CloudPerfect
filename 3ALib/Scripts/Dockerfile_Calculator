@@ -1,0 +1,8 @@
+FROM library/openjdk:latest
+RUN  echo "Europe/Athens" > /etc/timezone
+RUN  rm /etc/localtime
+RUN  dpkg-reconfigure -f noninteractive tzdata
+COPY . /3alib/
+WORKDIR /3alib
+CMD ls
+

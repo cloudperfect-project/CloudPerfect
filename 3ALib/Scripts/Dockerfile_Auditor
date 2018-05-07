@@ -1,0 +1,5 @@
+FROM library/openjdk:latest
+COPY . /3alib/
+WORKDIR /3alib
+CMD ls
+

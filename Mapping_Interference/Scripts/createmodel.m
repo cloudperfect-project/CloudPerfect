@@ -4,7 +4,7 @@ function [resp]=createmodel(arg)
 
 namearray=['trainver2_response';'trainver2_stddev';'trainver2_timeout']
   
-%FIX NORMALIZE INPUTS, check orientation of columns, seems to be rows: input number, columns: data lines
+%FIX NORMAaLIZE INPUTS, check orientation of columns, seems to be rows: input number, columns: data lines
 %old code in normalize_data  script
 %equivalent to mapminmax in this script normalization code (from line 211 approximately
 loadFileCommand=['load ./',arg,'/config.mat']

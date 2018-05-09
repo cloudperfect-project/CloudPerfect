@@ -1,0 +1,32 @@
+Provider Service:aws-ec2
+Getting server list and details...
+***************************************************************
+*******************NODE LEVEL ANALYSIS SECTION*****************
+***************************************************************
+GETTING NEXT NODE...
+Checking if instance:us-east-1/i-ea46dc07 is RUNNING..
+YES
+Found instance within the same Region...Running?
+Passed running status check...
+Passed check for not being the same node...
+Failed check on different AZ...
+Current Valid Region IDs number:0
+Current Valid Node IDs number:0
+GETTING NEXT NODE...
+Checking if instance:us-east-1/i-8fb24058 is RUNNING..
+NO, only running nodes are eligible
+Current Valid Region IDs number:0
+Current Valid Node IDs number:0
+***************************************************************
+*******************CONCLUSIONS SECTION*************************
+***********************************************************s****
+Final Valid Region IDs number:0
+Final Valid Node IDs number:0
+***************************************************************
+*******************CHECK REACHABILITY SECTION******************
+***************************************************************
+************************************************************
+*******************LOGGING SAMPLES SECTION******************
+************************************************************
+Loggeddatasize:0
+

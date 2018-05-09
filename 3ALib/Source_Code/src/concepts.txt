@@ -1,0 +1,34 @@
+the client is using only the AvailabilityAuditor, by inserting keys, provider and service name
+
+for google, we need to get the p12 file from the google platform, pass it through openssl to remove the password:
+openssl pkcs12 -in {downloaded_file}.p12 -nodes -out gcp-example.pem -passin pass:notasecret
+
+and the resulting pem file is stored locally. In the conf file we insert the location of the pem file.
+Username is the mail id key in the google platform
+Modifications have also been inserted in the GoogleComputeSlAAuditor that gets as input the pem file.
+Instructions at:https://github.com/jclouds/jclouds-examples/blob/master/google/src/main/java/org/jclouds/examples/google/computeengine/CreateServer.java
+
+Abstractions: interface for all specific auditors that need to implement it
+AbsrtactedGetserver: get computeservice object, handle differently per provider (different type of information needed)
+
+README: status may be achieved through pinging
+
+to enable pinging, one must implement the following actions:
+
+a) AWS: change in the security group of the VM instances the rules to include allowing of ICMP traffic
+in case we need to enable it also in the VMs we may issue the following command:
+ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+ 
+ 
+ 
+b) different OS versions taken under consideration (command is different in Windows and Linux)
+
+c) Decision is  based on Average reported value. By default, ping function has average if even 1 sample 
+gets through. We consider the same condition. 
+
+
+d) Pinging is decided in common with the pinging of 8.8.8.8, to ensure general connectivity of the client
+
+
+e) Changing the way we implement reachability decision needs a new class that implements the DecideReachability
+interface (and replacement in the class that the reachability decision is called)

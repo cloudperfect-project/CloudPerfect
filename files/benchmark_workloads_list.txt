@@ -1,4 +1,7 @@
-cfd:100iter
+cfd:500iterGAMG
+cfd:500iterICCG
+cfd:500iterPCG
+cfd:500iterGAMGWriteAtLast
 filebench:varmail
 filebench:webproxy
 filebench:webserver

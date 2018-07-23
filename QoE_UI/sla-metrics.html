@@ -1,0 +1,75 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> SLA Analytics</h2>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-4">
+            <form class="form-horizontal">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ranking Parameter Configuration</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Please define the appropriate filters for ranking the Providers</p>
+                    </div>
+                    <div class="panel-body form-group-separated">
+                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                            <label class="col-md-10 col-xs-12 control-label">Include minimum duration of failure?<br><span class="help-block"></span></label>
+                            <div class="col-md-2 col-xs-12">
+                                    <label class="switch">
+                                        <input type="checkbox" class="switch" ng-true-value="1" ng-false-value="0"  ng-model="bp" ng-change="recalculateRanking()"/>
+                                        <span></span>
+                                    </label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                            <label class="col-md-10 col-xs-12 control-label">Include percentage of availability?<br><span class="help-block"></span></label>
+                            <div class="col-md-2 col-xs-12">
+                                <label class="switch">
+                                    <input type="checkbox" class="switch" ng-true-value="1" ng-false-value="0"  ng-model="al" ng-change="recalculateRanking()"/>
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                            <label class="col-md-10 col-xs-12 control-label">Are you using the Cloud in peaks or full time? <br><span class="help-block"></span></label>
+                            <div class="col-md-2 col-xs-12">
+                                <label class="switch">
+                                    <input type="checkbox" class="switch" ng-true-value="1" ng-false-value="0"  ng-model="rvm" ng-change="recalculateRanking()"/>
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                            <label class="col-md-10 col-xs-12 control-label">Include deployment constraints? <br><span class="help-block"></span></label>
+                            <div class="col-md-2 col-xs-12">
+                                <label class="switch">
+                                    <input type="checkbox" class="switch" ng-true-value="1" ng-false-value="0"  ng-model="az" ng-change="recalculateRanking()"/>
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-8">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Provider Ranking (ISO 19086-2 Standard)</h3>
+                </div>
+                <div class="panel-body">
+                    <canvas id="bar" class="chart chart-bar"
+                            chart-data="data" chart-labels="labels"> chart-series="series"
+                    </canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

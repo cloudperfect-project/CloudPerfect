@@ -1,0 +1,53 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Private Results</h2>
+
+</div>
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap" >
+
+    <div class="row">
+        <div class="col-md-12" >
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table table-striped table-hover" ng-init="showMore=1">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">Exp</th>
+                            <th class="col-md-1">Date</th>
+                            <th class="col-md-1">Provider</th>
+                            <th class="col-md-1"> Size </th>
+                            <th class="col-md-1">Tool </th>
+                            <th class="col-md-1">Workload</th>
+                            <th class="col-md-6"> Metrics</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                       <tr ng-repeat="bench in privateBenchResults.results | orderBy:'$date'">
+                           <td class="col-md-1" ng-show="showMore==1"><button class="btn btn-success" ng-click="showMore=2"><i class="fa fa-plus"></i></button></td>
+                           <td class="col-md-1" ng-show="showMore==2"><button class="btn btn-warning" ng-click="showMore=1"><i class="fa fa-minus"></i></button></td>
+                           <td class="col-md-1" > {{bench.start['$date'] | date: 'yyyy-MM-dd'}}</td>
+                           <td class="col-md-1" > {{bench.provider.id}}</td>
+                           <td  class="col-md-1">{{bench.provider.size}}</td>
+                           <td class="col-md-1" > {{bench.tool}}</td>
+                           <td  class="col-md-1">{{bench.workload}}</td>
+
+                           <td class="col-md-6" ng-show="showMore==2">
+                               <table class="table table-bordered">
+                                   <tr ng-repeat="(key, data) in bench.metrics">
+                                       <td><b>{{key}}</b>:</td>
+                                       <td> {{data.value| limitTo:5 }}/<i>{{data.unit}}</i></td>
+                                   </tr>
+                               </table>
+                           </td>
+                           <td class="col-md-7" ng-show="showMore==1" > expand to see full Metrics</td>
+
+                       </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

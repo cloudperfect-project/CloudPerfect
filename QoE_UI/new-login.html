@@ -6,12 +6,12 @@
             <form  class="form-horizontal" method="post">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="text" class="form-control" placeholder="Username"/>
+                        <input type="text" class="form-control" placeholder="Username" ng-model="userN"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="password" class="form-control" placeholder="Password"/>
+                        <input type="password" class="form-control" placeholder="Password" ng-model="userP"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -19,10 +19,14 @@
                         <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-info btn-block" ng-click="log_in()">Log In</button>
+                        <button class="btn btn-info btn-block" ng-click="log_in(userN,userP)">Log In</button>
                     </div>
                 </div>
             </form>
+            <div class="alert alert-danger" role="alert" ng-show="failLog">
+                <button type="button" class="close" ng-click="failLog=false"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>Oh snap!</strong> Wrong credential Please Resubmit!
+            </div>
         </div>
         <div class="login-footer">
             <div class="pull-left">

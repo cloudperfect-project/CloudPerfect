@@ -1,0 +1,871 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmarking Tool Configuration</h2>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    <div class="panel panel-default tabs">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active"><a href="#tab-first1" role="tab" data-toggle="tab">Launch New Configuration</a></li>
+                            <li><a href="#tab-second2" role="tab" data-toggle="tab" >Launch Wizard </a></li>
+                            <li><a href="#tab-third3" role="tab" data-toggle="tab" ng-click="loadSchedules()">Scheduler Edit </a></li>
+
+                        </ul>
+                        <div class="panel-body tab-content">
+                            <div class="tab-pane active" id="tab-first1">
+
+                                <div class="col-md-12">
+
+                                    <form class="form-horizontal">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Provider Configuration</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>Please fill the form with the appropriate Provider information</p>
+                                            </div>
+                                            <div class="panel-body form-group-separated">
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                    <label class="col-md-3 col-xs-12 control-label">Provider Name:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <select class="form-control" id="Benchprovider"
+                                                                    ng-options="provider for provider in ListProviders"
+                                                                    ng-model="BenchLaunch.provider.name" ng-change="changeService(BenchLaunch.provider.name)">
+                                                                <option ng-selected="BenchLaunch.provider.name==''" value="">Select Provider</option>
+                                                            </select>
+                                                        </div>
+                                                        <span class="help-block">Please provide the name of the provider</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Security Group:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.provider.security_group"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the Security Group used</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Network Parameters:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.provider.network"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the Network Parameters used</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Region:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.provider.region"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the Region of the Service</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Cloud Access ID:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                            <input type="password" class="form-control" ng-model="BenchLaunch.provider.access_id"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the Cloud User info</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Secret Key:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                            <input type="password" class="form-control" ng-model="BenchLaunch.provider.secret_key"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the API key </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name=='ULM'|| BenchLaunch.provider.name=='Cosmote'||BenchLaunch.provider.name=='Filab'">
+                                                    <label class="col-md-3 col-xs-12 control-label">OpenStack URL:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.provider.auth_url"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the authentication URL for Openstack </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name=='ULM'|| BenchLaunch.provider.name=='Cosmote'||BenchLaunch.provider.name=='Filab'">
+                                                    <label class="col-md-3 col-xs-12 control-label">OpenStack Version:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.provider.auth_version"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the authentication version of Openstack </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name=='ULM'|| BenchLaunch.provider.name=='Cosmote'||BenchLaunch.provider.name=='Filab'">
+                                                    <label class="col-md-3 col-xs-12 control-label">OpenStack Project Name:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.provider.tenant"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the Name of the OpenStack Project </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-12">
+                                    <form class="form-horizontal">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">VM Configuration</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>Please fill the form with the appropriate Virtual Machine (VM) information</p>
+                                            </div>
+                                            <div class="panel-body form-group-separated">
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                    <label class="col-md-3 col-xs-12 control-label">OS Type:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.vm.platform"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the type of the Operating System (OS)</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">VM Size:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.vm.size"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the size of the VM</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">VM User:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.vm.vm_user"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide a name for the VM User</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">VM Image ID:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.vm.image"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the ID of the image</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Cloud KeyName:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                            <input type="text" class="form-control" ng-model="BenchLaunch.vm.key_name"/>
+                                                        </div>
+                                                        <span class="help-block">Please provide the key name</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">ssh Private Key:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                            <textarea class="form-control" rows="5" ng-model="BenchLaunch.vm.ssh_private_key"></textarea>
+                                                        </div>
+                                                        <span class="help-block">Please provide the ssh private key </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <form class="form-horizontal">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Benchmark Definition</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>Please Provide all the Benchmarks you wish to run on the specific VM</p>
+                                            </div>
+                                            <div class="panel-body ">
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                    <table class="table table-bordered col-md-7">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Tool</th>
+                                                            <th>Workload</th>
+                                                            <th class="col-md-1">Add</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <select class="form-control" id="tool2"
+                                                                            ng-options="tool as tool.id for tool in benchmarkTests"
+                                                                            ng-model="bench.tool" ng-change="changeTool(bench.tool)">
+                                                                        <option ng-selected="bench.tool==''" value="">Select Tool</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" id="workload2"
+                                                                            ng-options="workload as workload.id for workload in listofWorkload"
+                                                                            ng-model="bench.workload" >
+                                                                        <option ng-selected="bench.workload==''" value="">Select Workload</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-success" ng-click="pushBench()"><i class="fa fa-plus"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                        <tr ng-repeat="benchmarks in benches track by $index">
+                                                            <td>{{benchmarks.tool}}</td>
+                                                            <td>{{benchmarks.workload}}</td>
+                                                            <td><button class="btn btn-danger" ng-click="deleteBench(benchmarks)"><i class="fa fa-trash-o"></i></button> </td>
+                                                        </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <form class="form-horizontal">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Schedule Configuration</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>Please fill the form with the appropriate Scheduling parameters</p>
+                                            </div>
+                                            <div class="panel-body form-group-separated">
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                    <label class="col-md-2 col-xs-12 control-label">Run Period:</label>
+                                                    <div class="col-md-2 col-xs-4">
+                                                        <div class="input-group">
+                                                            Hours<input type="number" class="form-control" ng-model="BenchScheduler.interval.hours"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-xs-4">
+                                                        <div class="input-group">
+                                                            Days<input type="number" class="form-control" ng-model="BenchScheduler.interval.days"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-xs-4">
+                                                        <div class="input-group">
+                                                            Weeks<input type="number" class="form-control" ng-model="BenchScheduler.interval.weeks"/>
+                                                        </div>
+                                                    </div>
+                                                    <span class="help-block">Please define the time period on which the tests will run</span>
+                                                </div>
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Scheduler Status:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <label class="switch">
+                                                                <input type="checkbox" class="switch"  ng-model="BenchScheduler.active"/>
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                        <span class="help-block">keep this Scheduler Active</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Results Visibility:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <select class="form-control" id="benchVisibility1"
+                                                                    ng-options="visibility for visibility in visibilityOptions"
+                                                                    ng-model="BenchScheduler.properties.visibility" >
+                                                                <option ng-selected="BenchScheduler.properties.visibility==''" value="">Select Visibility Option</option>
+                                                            </select>
+                                                        </div>
+                                                        <span class="help-block">Who should be allowed to view these results</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <button class="btn btn-primary pull-right" ng-click="initiateBench()">Bench Launch</button>
+                                        </div>
+                                    </form>
+                                    <div class="alert alert-success" role="alert" ng-show="successBENCHLaunch">
+                                        <button type="button" class="close" data-dismiss="alert" ng-click="successBENCHLaunch=false"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <strong>Well done!</strong> Benchmark is launched successfully.
+                                    </div>
+                                </div>
+                            </div><!-- END PAGE CONTENT WRAPPER -->
+                            <div class="tab-pane" id="tab-second2">
+                                <div class="col-md-12">
+
+                                    <form class="form-horizontal">
+
+                                        <div class="panel panel-default tabs">
+                                            <div class="panel-body tab-content">
+                                                <div class="tab-pane active" id="tab-first">
+                                                    <div class="col-md-12">
+
+                                                        <form class="form-horizontal">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <h3 class="panel-title">Provider Configuration</h3>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <p>Please fill the form with the appropriate Provider information</p>
+                                                                </div>
+                                                                <div class="panel-body form-group-separated">
+
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                                        <label class="col-md-3 col-xs-12 control-label">Provider Name:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                                                <select class="form-control" id="Benchprovider-wizard"
+                                                                                        ng-options="provider for provider in ListProviders"
+                                                                                        ng-model="BenchLaunch.provider.name" ng-change="changeService(BenchLaunch.provider.name)">
+                                                                                    <option ng-selected="BenchLaunch.provider.name==''" value="">Select Provider</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <span class="help-block">Please provide the name of the provider</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                        <label class="col-md-3 col-xs-12 control-label">Cloud Access ID:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                <input type="password" class="form-control" ng-model="BenchLaunch.provider.access_id"/>
+                                                                            </div>
+                                                                            <span class="help-block">Please provide the Cloud User info</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                        <label class="col-md-3 col-xs-12 control-label">Secret Key:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                <input type="password" class="form-control" ng-model="BenchLaunch.provider.secret_key"/>
+                                                                            </div>
+                                                                            <span class="help-block">Please provide the API key </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name=='ULM'|| BenchLaunch.provider.name=='Cosmote'||BenchLaunch.provider.name=='Filab'">
+                                                                        <label class="col-md-3 col-xs-12 control-label">Authentication URL:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                <input type="text" class="form-control" ng-model="BenchLaunch.provider.auth_url"/>
+                                                                            </div>
+                                                                            <span class="help-block">Please provide the authentication URL for Provider</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ng-show="extraParameters==false" class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                                        <button class="btn btn-info" ng-click="extraParameters=true">Optional Parameters</button>
+                                                                    </div>
+                                                                    <div ng-show="extraParameters">
+                                                                        <div ng-show="extraParameters" class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                                            <button class="btn btn-danger" ng-click="extraParameters=false">Hide Parameters</button>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name!='ULM'&& BenchLaunch.provider.name!='Cosmote'&& BenchLaunch.provider.name!='Filab'">
+                                                                            <label class="col-md-3 col-xs-12 control-label">Authentication URL:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.provider.auth_url"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the authentication URL for Provider </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name=='ULM'|| BenchLaunch.provider.name=='Cosmote'||BenchLaunch.provider.name=='Filab'">
+                                                                            <label class="col-md-3 col-xs-12 control-label">Authentication Version:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.provider.auth_version"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the Version of the Authentication </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                            <label class="col-md-3 col-xs-12 control-label">Region:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.provider.region"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the Region of the Service</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name=='ULM'|| BenchLaunch.provider.name=='Cosmote'||BenchLaunch.provider.name=='Filab'">
+                                                                            <label class="col-md-3 col-xs-12 control-label">OpenStack Project Name:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.provider.tenant"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the Name of the OpenStack Project </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name=='ULM'|| BenchLaunch.provider.name=='Cosmote'||BenchLaunch.provider.name=='Filab'">
+                                                                            <label class="col-md-3 col-xs-12 control-label">OpenStack Project User Domain:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.provider.userDomain"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the Name of the OpenStack Project user Domain</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" ng-if="BenchLaunch.provider.name=='ULM'|| BenchLaunch.provider.name=='Cosmote'||BenchLaunch.provider.name=='Filab'">
+                                                                            <label class="col-md-3 col-xs-12 control-label">OpenStack Project  Domain:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.provider.projectDomain"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the Name of the OpenStack Domain </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-footer">
+                                                                <button class="btn btn-info btn-rounded pull-right" ng-click="populateCloudDiscoveryParameters()"><a href="#tab-second" role="tab" data-toggle="tab">Next</a></button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab-second">
+                                                    <div class="col-md-12">
+                                                        <form class="form-horizontal">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <h3 class="panel-title">VM Configuration</h3>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <p>Please fill the form with the appropriate Virtual Machine (VM) information</p>
+                                                                </div>
+                                                                <div class="panel-body form-group-separated">
+
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                        <label class="col-md-3 col-xs-12 control-label">VM Image Name:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                                                <select class="form-control" id="BenchImage"
+                                                                                        ng-options="image as image.name for image in vmConfigurationData.images"
+                                                                                        ng-model="BenchLaunch.vm.image">
+                                                                                    <option ng-selected="BenchLaunch.vm.image==''" value="">Select Image</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <span class="help-block">Please select the Name of the image</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                        <label class="col-md-3 col-xs-12 control-label">VM Size:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                                                <select class="form-control" id="BenchSize"
+                                                                                        ng-options="size as size.name for size in vmConfigurationData.hardwareProfiles"
+                                                                                        ng-model="BenchLaunch.vm.size">
+                                                                                    <option ng-selected="BenchLaunch.vm.size==''" value="">Select Image Size</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <span class="help-block">Please provide the size of the VM(hardware profile)</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                        <label class="col-md-3 col-xs-12 control-label">Network Specification:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                                                <select class="form-control" id="Benchnet"
+                                                                                        ng-options="network as network.name for network in vmConfigurationData.networks"
+                                                                                        ng-model="BenchLaunch.provider.network">
+                                                                                    <option ng-selected="BenchLaunch.provider.network==''" value="">Select Network</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <span class="help-block">Please provide the network to be used</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                        <label class="col-md-3 col-xs-12 control-label">Security Group:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                                                <select class="form-control" id="BenchSgroup"
+                                                                                        ng-options="sGroup as sGroup.name for sGroup in vmConfigurationData.securityGroups"
+                                                                                        ng-model="BenchLaunch.provider.security_group">
+                                                                                    <option ng-selected="BenchLaunch.provider.security_group==''" value="">Select Security Group</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <span class="help-block">Please provide the Security Group for the Configuration</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ng-show="extraParameters2==false" class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                                        <button class="btn btn-info" ng-click="extraParameters2=true">Optional Parameters</button>
+                                                                    </div>
+                                                                    <div ng-show="extraParameters2==true">
+                                                                        <div ng-show="extraParameters2" class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                                            <button class="btn btn-danger" ng-click="extraParameters2=false">Hide Parameters</button>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                                            <label class="col-md-3 col-xs-12 control-label">OS Type:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.vm.platform"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the type of the Operating System (OS)</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                            <label class="col-md-3 col-xs-12 control-label">VM User:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.vm.vm_user"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide a name for the VM User</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                            <label class="col-md-3 col-xs-12 control-label">Cloud KeyName:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                    <input type="text" class="form-control" ng-model="BenchLaunch.vm.key_name"/>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the key name</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                            <label class="col-md-3 col-xs-12 control-label">ssh Private Key:</label>
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                                                                    <textarea class="form-control" rows="5" ng-model="BenchLaunch.vm.ssh_private_key"></textarea>
+                                                                                </div>
+                                                                                <span class="help-block">Please provide the ssh private key </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-footer">
+                                                                <div class="row">
+                                                                    <button class="btn btn-info btn-rounded pull-right" ng-click="convertVMValues()"><a href="#tab-third" role="tab" data-toggle="tab">Next</a></button>
+                                                                    <button class="btn btn-info btn-rounded pull-right"><a href="#tab-first" role="tab" data-toggle="tab">Previous</a></button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab-third">
+                                                    <div class="col-md-6">
+                                                        <form class="form-horizontal">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <h3 class="panel-title">Benchmark Definition</h3>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <p>Please Provide all the Benchmarks you wish to run on the specific VM</p>
+                                                                </div>
+                                                                <div class="panel-body ">
+
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                                        <table class="table table-bordered col-md-7">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>Tool</th>
+                                                                                <th>Workload</th>
+                                                                                <th class="col-md-1">Add</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <select class="form-control" id="tool2-wizard"
+                                                                                            ng-options="tool as tool.id for tool in benchmarkTests"
+                                                                                            ng-model="bench.tool" ng-change="changeTool(bench.tool)">
+                                                                                        <option ng-selected="bench.tool==''" value="">Select Tool</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <select class="form-control" id="workload2-wizard"
+                                                                                            ng-options="workload as workload.id for workload in listofWorkload"
+                                                                                            ng-model="bench.workload" >
+                                                                                        <option ng-selected="bench.workload==''" value="">Select Workload</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <button class="btn btn-success" ng-click="pushBench()"><i class="fa fa-plus"></i></button>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr ng-repeat="benchmarks in benches track by $index">
+                                                                                <td>{{benchmarks.tool}}</td>
+                                                                                <td>{{benchmarks.workload}}</td>
+                                                                                <td><button class="btn btn-danger" ng-click="deleteBench(benchmarks)"><i class="fa fa-trash-o"></i></button> </td>
+                                                                            </tr>
+                                                                            </tbody>
+
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <form class="form-horizontal">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <h3 class="panel-title">Schedule Configuration</h3>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <p>Please fill the form with the appropriate Scheduling parameters</p>
+                                                                </div>
+                                                                <div class="panel-body form-group-separated">
+
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                                        <label class="col-md-2 col-xs-12 control-label">Run Period:</label>
+                                                                        <div class="col-md-2 col-xs-4">
+                                                                            <div class="input-group">
+                                                                                Hours<input type="number" class="form-control" ng-model="BenchScheduler.interval.hours"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2 col-xs-4">
+                                                                            <div class="input-group">
+                                                                                Days<input type="number" class="form-control" ng-model="BenchScheduler.interval.days"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2 col-xs-4">
+                                                                            <div class="input-group">
+                                                                                Weeks<input type="number" class="form-control" ng-model="BenchScheduler.interval.weeks"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <span class="help-block">Please define the time period on which the tests will run</span>
+                                                                    </div>
+
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                        <label class="col-md-3 col-xs-12 control-label">Scheduler Status:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <label class="switch">
+                                                                                    <input type="checkbox" class="switch"  ng-model="BenchScheduler.active"/>
+                                                                                    <span></span>
+                                                                                </label>
+                                                                            </div>
+                                                                            <span class="help-block">keep this Scheduler Active</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                                        <label class="col-md-3 col-xs-12 control-label">Results Visibility:</label>
+                                                                        <div class="col-md-6 col-xs-12">
+                                                                            <div class="input-group">
+                                                                                <select class="form-control" id="benchVisibility1-wizard"
+                                                                                        ng-options="visibility for visibility in visibilityOptions"
+                                                                                        ng-model="BenchScheduler.properties.visibility" >
+                                                                                    <option ng-selected="BenchScheduler.properties.visibility==''" value="">Select Visibility Option</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <span class="help-block">Who should be allowed to view these results</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <div class="alert alert-success" role="alert" ng-show="successBENCHLaunch">
+                                                            <button type="button" class="close" data-dismiss="alert" ng-click="successBENCHLaunch=false"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                            <strong>Well done!</strong> Benchmark is launched successfully.
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-primary pull-right" ng-click="initiateBench()">Bench Launch</button><button class="btn btn-info btn-rounded pull-left"><a href="#tab-second" role="tab" data-toggle="tab">Previous</a></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab-third3">
+                                <div class="col-md-12" style="margin-bottom: 10px;">
+                                    <label class="col-md-1 control-label">Scheduler List</label>
+                                    <div class="col-md-5">
+                                        <select class="form-control select" ng-options="scheduler as scheduler.id for scheduler in BenchSchedules" ng-model="scheduleID" ng-change="benchArrayConf()">
+                                            <option ng-selected="scheduleID==''" value="">Select Scheduler</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <form class="form-horizontal">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Benchmark Definition</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>Please Provide all the Benchmarks you wish to run on the specific VM</p>
+                                            </div>
+                                            <div class="panel-body ">
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                    <table class="table table-bordered col-md-7">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Tool</th>
+                                                            <th>Workload</th>
+                                                            <th class="col-md-1">Add</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <select class="form-control" id="tool"
+                                                                        ng-options="tool as tool.id for tool in benchmarkTests"
+                                                                        ng-model="bench.tool" ng-change="changeTool(bench.tool)">
+                                                                    <option ng-selected="bench.tool==''" value="">Select Tool</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control" id="workload"
+                                                                        ng-options="workload as workload.id for workload in listofWorkload"
+                                                                        ng-model="bench.workload" >
+                                                                    <option ng-selected="bench.workload==''" value="">Select Workload</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-success" ng-click="pushBench()"><i class="fa fa-plus"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr ng-repeat="benchmarks in benches track by $index">
+                                                            <td>{{benchmarks.tool}}</td>
+                                                            <td>{{benchmarks.workload}}</td>
+                                                            <td><button class="btn btn-danger" ng-click="deleteBench(benchmarks)"><i class="fa fa-trash-o"></i></button> </td>
+                                                        </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <form class="form-horizontal">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Schedule Configuration</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>Please fill the form with the appropriate Scheduling parameters</p>
+                                            </div>
+                                            <div class="panel-body form-group-separated">
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                                    <label class="col-md-2 col-xs-12 control-label">Run Period:</label>
+                                                    <div class="col-md-2 col-xs-4">
+                                                        <div class="input-group">
+                                                            Hours<input type="number" class="form-control" ng-model="scheduleID.interval.hours"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-xs-4">
+                                                        <div class="input-group">
+                                                            Days<input type="number" class="form-control" ng-model="scheduleID.interval.days"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-xs-4">
+                                                        <div class="input-group">
+                                                            Weeks<input type="number" class="form-control" ng-model="scheduleID.interval.weeks"/>
+                                                        </div>
+                                                    </div>
+                                                    <span class="help-block">Please define the time period on which the tests will run</span>
+                                                </div>
+
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Scheduler Status:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <label class="switch">
+                                                                <input type="checkbox" class="switch"  ng-model="scheduleID.active"/>
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                        <span class="help-block">keep this Scheduler Active</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                                    <label class="col-md-3 col-xs-12 control-label">Results Visibility:</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <select class="form-control" id="benchVisibility2"
+                                                                    ng-options="visibility for visibility in visibilityOptions"
+                                                                    ng-model="scheduleID.properties.visibility" >
+                                                                <option ng-selected="scheduleID.properties.visibility==''" value="">Select Visibility Option</option>
+                                                            </select>
+                                                        </div>
+                                                        <span class="help-block">Who should be allowed to view these results</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <button class="btn btn-primary pull-right" ng-click="updateScheduler()">Update Scheduler</button>
+                                        </div>
+                                    </form>
+                                    <div class="alert alert-success" role="alert" ng-show="successBENCHUpdate">
+                                        <button type="button" class="close" data-dismiss="alert" ng-click="successBENCHUpdate=false"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <strong>Well done!</strong> Scheduler is updated successfully.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

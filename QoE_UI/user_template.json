@@ -1,15 +1,15 @@
 {
-  "UserName":"",
+  "username":"",
   "password":"",
   "firstName":"",
-  "LastName":"",
+  "lastName":"",
   "userID":"",
-  "userAuth":"",
+  "userAuth":"org|payment",
+  "DBUser":"",
+  "DBKey":"",
   "Messages":[{
     "text":"",
     "timestamp":"",
     "read":true
   }]
-
-
 }

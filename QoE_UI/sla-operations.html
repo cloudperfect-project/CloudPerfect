@@ -1,0 +1,118 @@
+
+            <div class="col-md-12">
+
+                <form class="form-horizontal">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">3ALib Tool Launch</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Please fill the form with the appropriate fields in order to launch SLA Monitoring</p>
+                        </div>
+                        <div class="panel-body form-group-separated">
+
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                <label class="col-md-3 col-xs-12 control-label">Provider Name:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        <select class="form-control" id="provider"
+                                                ng-options="provider for provider in ListProviders"
+                                                ng-model="SLALaunch.providerName" ng-change="changeService(SLALaunch.providerName)" >
+                                            <option ng-selected="SLALaunch.providerName==''" value="">Select Provider</option>
+                                        </select>
+
+                                    </div>
+                                    <span class="help-block">Please provide the name of the provider</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Service Name:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        <select class="form-control" id="service"
+                                                ng-options="service for service in listofServices"
+                                                ng-model="SLALaunch.serviceName" >
+                                            <option ng-selected="SLALaunch.serviceName==''" value="">Select Service</option>
+                                        </select>
+                                    </div>
+                                    <span class="help-block">Please provide the name of the service</span>
+                                </div>
+                            </div>
+                           <!--
+                            !in case instance id is needed!
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Instance ID:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        <input type="text" class="form-control" ng-model="SLALaunch.serviceName"/>
+                                    </div>
+                                    <span class="help-block">Please provide the name of the specific instance for monitoring</span>
+                                </div>
+                            </div> -->
+
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Cloud Access ID:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                        <input type="password" class="form-control" ng-model="SLALaunch.cloudUser"/>
+                                    </div>
+                                    <span class="help-block">Please provide the Cloud User info</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Secret Key:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                        <input type="password" class="form-control" ng-model="SLALaunch.APIKey"/>
+                                    </div>
+                                    <span class="help-block">Please provide the API key </span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Email Notification :<br><span class="help-block">(Do you wish to get mail notifications for the status of Cloud Service?)</span></label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="col-md-3">
+                                        <label class="switch">
+                                            <input type="checkbox" class="switch"  ng-model="emailNotifications"/>
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Availability :<br><span class="help-block">(Please Define a Custom Availability If Needed)</span></label>
+                                <div class="col-md-6 col-xs-12">
+                                        <div class="col-md-3">
+                                            <label class="switch">
+                                                <input type="checkbox" class="switch"  ng-model="customAvailability"/>
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3" ng-show="customAvailability">
+                                            <input type="text" class="form-control"  placeholder="Soft Availability" ng-model="softAvailability"/>
+                                            <input type="text" class="form-control"  placeholder="Hard Availability" ng-model="hardAvailability"/>
+                                        </div>
+                                    <span class="help-block col-md-12">Please define all the metrics and the appropriate values in % </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+
+                            <button class="btn btn-primary pull-right" ng-click="initiateLaunchSLA()">Launch SLA</button>
+                        </div>
+                    </div>
+                    <div class="alert alert-success" role="alert" ng-show="successSLALaunch">
+                        <button type="button" class="close" data-dismiss="alert" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <strong>Well done!</strong> SLA Auditor has been successfully launched.
+                    </div>
+                </form>
+
+            </div>
+
+    <!-- END PAGE CONTENT WRAPPER -->

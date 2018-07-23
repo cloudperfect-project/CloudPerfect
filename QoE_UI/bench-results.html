@@ -1,0 +1,85 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Results</h2>
+    <div class="col-md-6">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" class="form-control" ng-model="benchS" placeholder="Search for Benchmark..."/>
+    </div>
+</div>
+    <div class="col-md-2" >
+        <button ng-show="qoeUser=='testNTUAUser1'" class="btn btn-default" ng-click="storeBenchTable()">Store Table</button>
+        <button ng-show="qoeUser=='testNTUAUser1'" class="btn btn-default" ng-click="launchBenchResults()">Load Results</button>
+    </div>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap" >
+
+    <div class="row">
+        <div class="col-md-12" >
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table table-striped table-hover" ng-init="showMore=1">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">Exp</th>
+                            <th class="col-md-1">Provider/Size </th>
+                            <th class="col-md-1">Tool </th>
+                            <th class="col-md-2">Metrics AVG</th>
+                            <th class="col-md-2">Metrics DEV</th>
+                            <th class="col-md-2" data-toggle="tooltip" data-placement="top" title="Performance of Virtual Cores AVG Score Based on SLALOM Open Model Standardizations(100 * average[(abs(measurement - average(all measurements)) / average(all measurements)] )">PVC AVG</th>
+                            <th class="col-md-3" data-toggle="tooltip" data-placement="top" title="Performance of Virtual Cores MAX Score Based on SLALOM Open Model Standardizations 100 * max(measurement) - average(all measurements) / average(all measurements)">PVC MAX</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                       <tr ng-repeat="bench in benchTable | filter:benchS" on-finish-render>
+                           <td class="col-md-1" ng-show="showMore==1"><button class="btn btn-success" ng-click="showMore=2"><i class="fa fa-plus"></i></button></td>
+                           <td class="col-md-1" ng-show="showMore==2"><button class="btn btn-warning" ng-click="showMore=1"><i class="fa fa-minus"></i></button></td>
+                           <td class="col-md-1" > {{bench.provider}}/{{bench.size}}</td>
+                           <td  class="col-md-1">{{bench.tool}}/{{bench.workload}}</td>
+                           <td class="col-md-1" ng-show="showMore==2">
+                               <table class="table table-bordered">
+                                   <tr ng-repeat="metric in bench.metrics">
+                                       <td><b>{{metric.name}}</b>:<i>{{metric.unit}}</i></td>
+                                       <td> {{calcAVG(metric.values)| limitTo:5 }}</td>
+                                   </tr>
+                               </table>
+                           </td>
+                           <td class="col-md-2" ng-show="showMore==2">
+                               <table class="table table-bordered">
+                                   <tr ng-repeat="metric in bench.metrics">
+                                       <td><b>{{metric.name}}</b>:<i>{{metric.unit}}</i></td>
+                                       <td> {{calcDEV(metric.values)| limitTo:5  }}</td>
+                                   </tr>
+                               </table>
+                           </td>
+                           <td class="col-md-2" ng-show="showMore==2">
+                               <table class="table table-bordered">
+                                   <tr ng-repeat="metric in bench.metrics">
+                                       <td><b>{{metric.name}}</b>:<i>{{metric.unit}}</i></td>
+                                       <td> {{calcPVCAVG(metric.values)| limitTo:4 }}%</td>
+                                   </tr>
+                               </table>
+                           </td>
+                           <td class="col-md-2" ng-show="showMore==2">
+                               <table class="table table-bordered ">
+                                   <tr ng-repeat="metric in bench.metrics">
+                                       <td><b>{{metric.name}}</b>:<i>{{metric.unit}}</i></td>
+                                       <td> {{calcPVCMAX(metric.values)| limitTo:4 }}%</td>
+                                   </tr>
+                               </table>
+                           </td>
+                           <td class="col-md-1" ng-show="showMore==1" > expand to see AVG</td>
+                           <td class="col-md-2" ng-show="showMore==1">expand to see DEV</td>
+                           <td class="col-md-2" ng-show="showMore==1"> expand to see PVC AVG</td>
+                           <td class="col-md-2" ng-show="showMore==1"> expand to see PVC MAX</td>
+                       </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

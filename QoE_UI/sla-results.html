@@ -1,0 +1,56 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> SLA Results</h2>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default" ng-init="slaF=''">
+                <div class="panel-heading">
+                    <h3 class="panel-title col-md-12">SLA Results for: <b>{{qoeUser}}</b>
+                        <button class="btn btn-default" ng-click="slaF='monthly'">Month</button>
+                        <button class="btn btn-default" ng-click="slaF='yearly'">Year</button>
+                        <button class="btn btn-default" ng-click="slaF=''">All</button>
+                        <button class="btn btn-info " style="float: right !important;" ng-click="launchSLAResults()"><i class="fa fa-refresh"></i></button>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Provider</th>
+                            <th>Service</th>
+                            <th>Data Center</th>
+                            <th>SLA</th>
+                            <th>SLA Violation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="slaResult in slaResultsTable | filter:{'type':slaF}">
+                            <td>{{slaResult.type}}</td>
+                            <td ng-if="slaResult.type=='monthly'">{{slaResult.Month}}/{{slaResult.Year}}</td>
+                            <td ng-if="slaResult.type=='yearly'">{{slaResult.Year}}</td>
+                            <td>{{slaResult.Provider}}</td>
+                            <td>{{slaResult.Service}}</td>
+                            <td>{{slaResult['Data-Center']}}</td>
+                            <td>
+                                {{slaResult.SLA| limitTo:5 }}%
+                            </td>
+                            <td ng-if="slaResult['Agreement-Status']=='Soft'" style="background-color: #fdf756 "> Violation : {{slaResult['Violation-Percentage']| limitTo:5 }}%</td>
+                            <td ng-if="slaResult['Agreement-Status']=='Hard'" style="background-color: #fd6b6b "> Violation : {{slaResult['Violation-Percentage']| limitTo:5 }}%</td>
+                            <td ng-if="slaResult['Agreement-Status']=='Ok'" style="background-color: #6fe67e "> No Violation </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

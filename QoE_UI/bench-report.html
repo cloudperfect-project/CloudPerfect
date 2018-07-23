@@ -1,0 +1,77 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Log Files</h2>
+    <div class="col-md-6">
+    </div>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <!-- START JUSTIFIED TABS -->
+            <div class="panel panel-default tabs">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Scheduled benchmark Reporting</a></li>
+                    <li><a href="#tab2" data-toggle="tab">Upcoming Scheduled Jobs</a></li>
+                </ul>
+                <div class="panel-body tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <table class="table table-striped">
+                            <thead>
+                            <th>Schedule ID</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Error Report</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="exec in benchLogFiles | filter:qoeUser">
+                                    <td>{{exec.schedule_id}}</td>
+                                    <td>{{exec.time['$date']|date:'medium'}}</td>
+                                    <td ng-if="exec.status=='ERROR'" style="background-color: #fd6b6b ">{{exec.status}}</td>
+                                    <td ng-if="exec.status=='MISSSED'" style="background-color: #fdf756 ">{{exec.status}}</td>
+                                    <td ng-if="exec.status=='OK'" style="background-color: #6fe67e ">{{exec.status}}</td>
+                                    <td>{{exec.exception}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="col-md-8">
+                        <table class="table table-striped">
+                            <thead>
+                            <th>Scheduler ID</th>
+                            <th>Next Run</th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="job in benchJobFiles | filter:qoeUser">
+                                <td>{{job.id}} </td>
+                                <td>{{job.next_run_time|date:'medium'}}</td>
+
+                            </tr>
+                            </tbody>
+
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END JUSTIFIED TABS -->
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

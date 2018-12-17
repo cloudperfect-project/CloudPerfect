@@ -1,0 +1,63 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> SLA Auditors</h2>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">SLA Auditor List</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <th>Provider</th>
+                        <th>Service</th>
+                        <th>Action</th>
+
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="auditor in slaAuditorsTable">
+                        <td>{{auditor.Provider}}</td>
+                        <td>{{auditor.Service}}</td>
+                        <td><button class="btn btn-danger" ng-click="deleteAuditor('SLA')"><i class="fa fa-trash-o"></i></button> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Scale Auditor List</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <th>Provider</th>
+                        <th>Service</th>
+                        <th>Scale Group</th>
+                        <th>Action</th>
+
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="Sauditor in scaleAuditorTable">
+                            <td>{{Sauditor.Provider}}</td>
+                            <td>{{Sauditor.Service}}</td>
+                            <td>{{Sauditor.scale_group}}</td>
+                            <td><button class="btn btn-danger" ng-click="deleteAuditor('scale')"><i class="fa fa-trash-o"></i></button> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

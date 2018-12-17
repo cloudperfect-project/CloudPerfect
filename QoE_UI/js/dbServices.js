@@ -29,6 +29,33 @@ dbConnect.factory('dbService', ['$resource', function($resource) {
                 url:"http://147.102.19.75:27080/3alib/SLA/_find?criteria={\"User\":\":id\"}",
                 contentType: 'application/x-www-form-urlencoded'
             },
+            'GETScaleResults': {
+                method:'GET',
+                isArray: false,
+                params:{
+                    id:'@id'
+                },
+                url:"http://147.102.19.75:27080/3alib/scaleSLA/_find?criteria={\"User\":\":id\"}",
+                contentType: 'application/x-www-form-urlencoded'
+            },
+            'GETSLAAuditors': {
+                method:'GET',
+                isArray: false,
+                params:{
+                    id:'@id'
+                },
+                url:"http://147.102.19.75:27080/3alib/SLAAgreement/_find?criteria={\"id\":\":id\"}",
+                contentType: 'application/x-www-form-urlencoded'
+            },
+            'GETScaleAuditors': {
+                method:'GET',
+                isArray: false,
+                params:{
+                    id:'@id'
+                },
+                url:"http://147.102.19.75:27080/3alib/scaleAgreement/_find?criteria={\"id\":\":id\"}",
+                contentType: 'application/x-www-form-urlencoded'
+            },
             'GETBENCHTableResults': {
                 method:'GET',
                 isArray: false,
@@ -42,7 +69,7 @@ dbConnect.factory('dbService', ['$resource', function($resource) {
                     visibility:'private',
                     id:'@id'
                 },
-                url:"http://147.102.19.75:27080/benchmarking/results/_find?criteria={\"properties.visibility\":\":visibility\", \"user_id\":\":id\"}",
+                url:"http://147.102.19.75:27080/benchmarking/results/_find?criteria={\"properties.visibility\":\":visibility\", \"properties.user\":\":id\"}&batch_size=10000",
                 contentType: 'application/x-www-form-urlencoded'
             },
             'GETProviderSLA': {
@@ -60,7 +87,7 @@ dbConnect.factory('dbService', ['$resource', function($resource) {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                url:"http://147.102.19.75:27080/benchmarking/_apexec/_find",
+                url:"http://147.102.19.75:27080/benchmarking/_apexec/_find?batch_size=100000000",
                 contentType: 'application/x-www-form-urlencoded'
             },
             'GETBENCHJobs': {
@@ -82,7 +109,7 @@ dbConnect.factory('dbService', ['$resource', function($resource) {
             'GETBenchTEST':{
                 method:'GET',
                 isArray: true,
-                url:"http://147.102.19.75:8900/qoehelper/rest/benchmarks/DEVELOPMENT",
+                url:"http://147.102.19.75:8900/qoehelper/rest/benchmarks/LATEST",
                 contentType: 'application/json'
             },
             'GETBENCHSchedules': {
@@ -100,6 +127,15 @@ dbConnect.factory('dbService', ['$resource', function($resource) {
                 url:"http://147.102.19.75:4550/secrets/create",
                 contentType: 'application/json'
             },
+            'dockerSecretDelete': {
+                method:'DELETE',
+                isArray: false,
+                params:{
+                    id:'@id'
+                },
+                url:"http://147.102.19.75:4550/secrets/:id",
+                contentType: 'application/json'
+            },
             'SLACreateService': {
                 method:'POST',
                 isArray: false,
@@ -114,6 +150,16 @@ dbConnect.factory('dbService', ['$resource', function($resource) {
                 contentType: 'application/x-www-form-urlencoded',
                 isArray: false,
                 url:"http://147.102.19.75:27080/3alib/SLAAgreement/_insert"
+
+            },
+            'scaleCreateCustomAgreement': {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                contentType: 'application/x-www-form-urlencoded',
+                isArray: false,
+                url:"http://147.102.19.75:27080/3alib/scaleAgreement/_insert"
 
             },
             'BenchStore': {
@@ -146,6 +192,16 @@ dbConnect.factory('dbService', ['$resource', function($resource) {
                 url:"http://147.102.19.75:27080/benchmarking/scheduling/_update"
 
             },
+            'schedulerDelete':{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                contentType: 'application/x-www-form-urlencoded',
+                isArray: false,
+                url:"http://147.102.19.75:27080/benchmarking/scheduling/_remove"
+
+            },
 
             //the ip can change to docker.host if a script is running on the deployment
             'GETBenchGroups': {
@@ -166,9 +222,29 @@ dbConnect.factory('dbService', ['$resource', function($resource) {
                     workload:'@workload',
                     tool:'tool'
                 },
-                url:"http://147.102.19.75:27080/benchmarking/results/_find?criteria={\"provider.id\":\":provider\",\"provider.size\":\":size\",\"workload\":\":workload\",\"tool\":\":tool\"}",
+                url:"http://147.102.19.75:27080/benchmarking/results/_find?criteria={\"provider.id\":\":provider\",\"provider.size\":\":size\",\"test.workload\":\":workload\",\"test.tool\":\":tool\"}",
                 contentType: 'application/x-www-form-urlencoded'
+            },
+            'GETCostModel': {
+                method:'GET',
+                isArray: false,
+                params:{
+                    id:'@id'
+                },
+                url:"http://147.102.19.75:27080/qoe/costModels/_find?criteria={\"UserId\":\":id\"}",
+                contentType: 'application/x-www-form-urlencoded'
+            },
+            'costModelUpdate': {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                contentType: 'application/x-www-form-urlencoded',
+                isArray: false,
+                url:"http://147.102.19.75:27080/qoe/costModels/_update"
+
             }
+
 
 
 

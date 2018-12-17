@@ -5,7 +5,6 @@
     <ignored path="QoE_UI.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,73 +13,121 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1933432901">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="12" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="8" />
+          <entry key="project.open.time.7" value="5" />
+          <entry key="project.open.time.8" value="4" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="20" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="1308" />
+          <entry key="JavaScript" value="1052" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="20" />
+          <entry key="JavaScript" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="20" />
+          <entry key="js" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="1308" />
+          <entry key="js" value="1052" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="QoE_UI" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="240" selection-start-line="240" selection-end-line="240" />
+            <state relative-caret-position="401">
+              <caret line="231" column="32" selection-start-line="231" selection-start-column="32" selection-end-line="231" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new-login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/new-login.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sla-results.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+            <state relative-caret-position="517">
+              <caret line="41" column="65" lean-forward="true" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="theme-blue.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/theme-blue.css">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bench-private-results.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69858">
-              <caret line="3881" column="31" selection-start-line="3881" selection-start-column="31" selection-end-line="3881" selection-end-column="31" />
+            <state relative-caret-position="381">
+              <caret line="48" column="67" lean-forward="true" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="90" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bench-operations.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bench-operations.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sla-auditor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11844">
-              <caret line="725" column="50" selection-start-line="725" selection-start-column="50" selection-end-line="725" selection-end-column="50" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" />
-                <element signature="e#28712#28719#1" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="e#72764#72771#1" expanded="true" />
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" />
-                <element signature="e#84316#84323#1" expanded="true" />
-              </folding>
+            <state relative-caret-position="954">
+              <caret line="53" column="93" selection-start-line="53" selection-start-column="93" selection-end-line="53" selection-end-column="93" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dbServices.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/dbServices.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sla-operations.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1494">
-              <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
+            <state relative-caret-position="342">
+              <caret line="19" column="101" selection-start-line="19" selection-start-column="101" selection-end-line="19" selection-end-column="101" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainController.js" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scale-results.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="621">
+              <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/mainController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="638" column="50" selection-start-line="638" selection-start-column="50" selection-end-line="638" selection-end-column="50" />
-              <folding>
-                <element signature="e#0#45#0" />
-              </folding>
+            <state relative-caret-position="162">
+              <caret line="1140" column="20" selection-start-line="1140" selection-start-column="20" selection-end-line="1140" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/dbServices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2430">
+              <caret line="135" column="60" selection-start-line="135" selection-start-column="60" selection-end-line="135" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -97,36 +144,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$scope.softAvailability</find>
-      <find>$scope.emailNotifications</find>
-      <find>time</find>
-      <find>wizard</find>
-      <find>panel-heading</find>
-      <find />
-      <find>preview</find>
-      <find>previ</find>
-      <find>$scope.BenchLaunch</find>
-      <find>launchBenchResultsStored</find>
-      <find>launchBenchResults</find>
-      <find>GETSLAResults</find>
-      <find>$scope.benchTable</find>
-      <find>vm.name</find>
-      <find>vm.</find>
-      <find>vm</find>
-      <find>populateCloudDiscoveryParameters</find>
-      <find>SLACreateService</find>
-      <find>initiateBench</find>
-      <find>worklo</find>
-      <find>listofWorkload</find>
-      <find>equals</find>
-      <find>for</find>
-      <find>.id</find>
-      <find>tool</find>
-      <find>push</find>
-      <find>workload.id</find>
-      <find>ng-options</find>
+      <find>costModelTable</find>
+      <find>$scope.performanceCostFilters={</find>
+      <find>provider</find>
+      <find>SLALaunch</find>
+      <find>softAvailability</find>
+      <find>custom</find>
+      <find>initiateLaunchSLA</find>
+      <find>labels</find>
       <find>initia</find>
-      <find>benchmark defi</find>
+      <find>initiate</find>
+      <find>java</find>
+      <find>successSLALaunch</find>
+      <find>$scope.ScaleLaunch</find>
+      <find>$scope.createCustomSLA</find>
+      <find>launchSLAResults()</find>
+      <find>launchSLAResults</find>
+      <find>$scope.slaResultsTable</find>
+      <find>SLAResults</find>
+      <find>sla re</find>
+      <find>slaAuditorsTable</find>
+      <find>initiateLaunchScale</find>
+      <find>service</find>
+      <find>audito</find>
+      <find>SLA Scale Time</find>
+      <find>result</find>
+      <find>GETBENCHTableResults</find>
+      <find>benchre</find>
+      <find>45</find>
+      <find>createAnalyticsLineCharts</find>
+      <find>$scope.BenchResultsAnalytics</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\alexandros\Dropbox\QoE_UI</dir>
@@ -134,6 +181,7 @@
     </dirStrings>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/index.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/js/mainController.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -144,9 +192,6 @@
         <option value="$PROJECT_DIR$/newLogin.html" />
         <option value="$PROJECT_DIR$/pages-login.html" />
         <option value="$PROJECT_DIR$/js/loginHandlerController.js" />
-        <option value="$PROJECT_DIR$/bench-metrics.html" />
-        <option value="$PROJECT_DIR$/bench-queries.html" />
-        <option value="$PROJECT_DIR$/sla-queries.html" />
         <option value="$PROJECT_DIR$/blank.html" />
         <option value="$PROJECT_DIR$/css/theme-blue.css" />
         <option value="$PROJECT_DIR$/index2.html" />
@@ -159,19 +204,26 @@
         <option value="$PROJECT_DIR$/js/plugins/angular/test2.js" />
         <option value="$PROJECT_DIR$/js/plugins/angular/test.html" />
         <option value="$PROJECT_DIR$/user_template.json" />
-        <option value="$PROJECT_DIR$/sla-metrics.html" />
-        <option value="$PROJECT_DIR$/sla-operations.html" />
-        <option value="$PROJECT_DIR$/js/navigationController.js" />
-        <option value="$PROJECT_DIR$/bench-report.html" />
         <option value="$USER_HOME$/Desktop/Solution-jquery/calculatorScript.js" />
         <option value="$USER_HOME$/Desktop/Solution/calculatorScript.js" />
         <option value="$USER_HOME$/Desktop/Solution/calculator.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/bench-results.html" />
-        <option value="$PROJECT_DIR$/sla-results.html" />
-        <option value="$PROJECT_DIR$/bench-private-results.html" />
-        <option value="$PROJECT_DIR$/js/dbServices.js" />
+        <option value="$PROJECT_DIR$/sla-queries.html" />
         <option value="$PROJECT_DIR$/bench-operations.html" />
+        <option value="$PROJECT_DIR$/cost-model.html" />
+        <option value="$PROJECT_DIR$/bench-queries.html" />
+        <option value="$PROJECT_DIR$/js/navigationController.js" />
+        <option value="$PROJECT_DIR$/scale-results.html" />
+        <option value="$PROJECT_DIR$/bench-metrics.html" />
+        <option value="$PROJECT_DIR$/sla-auditor.html" />
+        <option value="$PROJECT_DIR$/sla-operations.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/sla-metrics.html" />
+        <option value="$PROJECT_DIR$/sla-scale.html" />
+        <option value="$PROJECT_DIR$/bench-private-results.html" />
+        <option value="$PROJECT_DIR$/bench-report.html" />
+        <option value="$PROJECT_DIR$/js/dbServices.js" />
+        <option value="$PROJECT_DIR$/sla-results.html" />
         <option value="$PROJECT_DIR$/js/mainController.js" />
       </list>
     </option>
@@ -182,14 +234,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-467" />
+    <option name="y" value="-8" />
+    <option name="width" value="2425" />
+    <option name="height" value="1103" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -214,26 +263,6 @@
               <item name="QoE_UI" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="QoE_UI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QoE_UI" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QoE_UI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QoE_UI" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="angular" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QoE_UI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QoE_UI" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="smartwizard" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -251,19 +280,19 @@
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\trick\Dropbox\QoE_UI" />
-      <recent name="C:\Users\alexandros\Dropbox\QoE_UI" />
-      <recent name="C:\Users\alexandros\Dropbox\QoE_UI\js\plugins\n3-charts" />
-      <recent name="C:\Users\alexandros\Dropbox\QoE_UI\css" />
-      <recent name="C:\Users\alexandros\Dropbox\QoE_UI\js\plugins" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\trick\Dropbox\QoE_UI\js\plugins\angular" />
       <recent name="C:\Users\trick\Dropbox\QoE_UI\js" />
       <recent name="C:\Users\trick\Dropbox\QoE_UI\js\plugins" />
       <recent name="C:\Users\alexandros\Dropbox\QoE_UI\js\plugins\angular" />
       <recent name="C:\Users\alexandros\Dropbox\QoE_UI\img" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\trick\Dropbox\QoE_UI" />
+      <recent name="C:\Users\alexandros\Dropbox\QoE_UI" />
+      <recent name="C:\Users\alexandros\Dropbox\QoE_UI\js\plugins\n3-charts" />
+      <recent name="C:\Users\alexandros\Dropbox\QoE_UI\css" />
+      <recent name="C:\Users\alexandros\Dropbox\QoE_UI\js\plugins" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -279,6 +308,9 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/QoE_UI/index.html">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -286,6 +318,7 @@
       <tasks />
       <arguments />
       <envs />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
       <node-interpreter />
@@ -297,7 +330,13 @@
       <test-kind>DIRECTORY</test-kind>
       <test-directory />
       <recursive>false</recursive>
+      <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -449,11 +488,92 @@
       <workItem from="1532113764044" duration="83000" />
       <workItem from="1532338039418" duration="17000" />
       <workItem from="1532340603867" duration="1200000" />
+      <workItem from="1532351641152" duration="599000" />
+      <workItem from="1532425056884" duration="13355000" />
+      <workItem from="1532446940715" duration="3000" />
+      <workItem from="1532510102165" duration="4373000" />
+      <workItem from="1532603304143" duration="599000" />
+      <workItem from="1532632357086" duration="272000" />
+      <workItem from="1532699833674" duration="1244000" />
+      <workItem from="1532939063226" duration="599000" />
+      <workItem from="1533031189600" duration="1306000" />
+      <workItem from="1534843745467" duration="1201000" />
+      <workItem from="1535702700608" duration="641000" />
+      <workItem from="1535720135381" duration="1590000" />
+      <workItem from="1536047052062" duration="3000" />
+      <workItem from="1536326827400" duration="624000" />
+      <workItem from="1536569652923" duration="2758000" />
+      <workItem from="1536663137500" duration="1701000" />
+      <workItem from="1536675514732" duration="1827000" />
+      <workItem from="1536679279873" duration="613000" />
+      <workItem from="1536746776773" duration="733000" />
+      <workItem from="1536830226589" duration="599000" />
+      <workItem from="1537521415952" duration="2900000" />
+      <workItem from="1538485732548" duration="1131000" />
+      <workItem from="1538554632850" duration="1901000" />
+      <workItem from="1538570622919" duration="3005000" />
+      <workItem from="1538578847267" duration="679000" />
+      <workItem from="1538669188265" duration="1177000" />
+      <workItem from="1538731923830" duration="5050000" />
+      <workItem from="1538764991625" duration="21000" />
+      <workItem from="1539081414615" duration="16097000" />
+      <workItem from="1539159935478" duration="11609000" />
+      <workItem from="1539178741456" duration="2818000" />
+      <workItem from="1539189833029" duration="120000" />
+      <workItem from="1539348354936" duration="1312000" />
+      <workItem from="1539608861503" duration="1445000" />
+      <workItem from="1539678226609" duration="389000" />
+      <workItem from="1539696759882" duration="2148000" />
+      <workItem from="1539765486009" duration="1686000" />
+      <workItem from="1539947519953" duration="7273000" />
+      <workItem from="1540018653228" duration="2316000" />
+      <workItem from="1540024820818" duration="1300000" />
+      <workItem from="1540116029222" duration="7439000" />
+      <workItem from="1540195015138" duration="1933000" />
+      <workItem from="1540278874030" duration="2406000" />
+      <workItem from="1540284455338" duration="5749000" />
+      <workItem from="1540305542296" duration="277000" />
+      <workItem from="1540374229144" duration="3877000" />
+      <workItem from="1540460317491" duration="2011000" />
+      <workItem from="1540547289280" duration="1198000" />
+      <workItem from="1540805048253" duration="599000" />
+      <workItem from="1540806713738" duration="9087000" />
+      <workItem from="1540889401295" duration="8590000" />
+      <workItem from="1540914441090" duration="1856000" />
+      <workItem from="1540984789798" duration="2055000" />
+      <workItem from="1541017782582" duration="614000" />
+      <workItem from="1541067798034" duration="14118000" />
+      <workItem from="1541150384111" duration="16702000" />
+      <workItem from="1541270880936" duration="5316000" />
+      <workItem from="1541410703925" duration="9760000" />
+      <workItem from="1541495819994" duration="3057000" />
+      <workItem from="1541588233507" duration="1797000" />
+      <workItem from="1542103563692" duration="1249000" />
+      <workItem from="1542116669951" duration="747000" />
+      <workItem from="1542618864478" duration="2473000" />
+      <workItem from="1542705120107" duration="8195000" />
+      <workItem from="1542792736212" duration="11381000" />
+      <workItem from="1542879101256" duration="15112000" />
+      <workItem from="1542964306966" duration="3016000" />
+      <workItem from="1542975410562" duration="54000" />
+      <workItem from="1542975934182" duration="3405000" />
+      <workItem from="1542981193136" duration="2906000" />
+      <workItem from="1543228615839" duration="743000" />
+      <workItem from="1543247205963" duration="625000" />
+      <workItem from="1543311279607" duration="4700000" />
+      <workItem from="1543399058309" duration="2505000" />
+      <workItem from="1543477970435" duration="6823000" />
+      <workItem from="1543564145244" duration="1205000" />
+      <workItem from="1544045811270" duration="599000" />
+      <workItem from="1544522110975" duration="1199000" />
+      <workItem from="1544619764000" duration="599000" />
+      <workItem from="1544797817199" duration="1943000" />
+      <workItem from="1545037114860" duration="7837000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507847000" />
+    <option name="totallyTimeSpent" value="782621000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -467,42 +587,42 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17773438" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49674478" weight="0.38206896" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5032552" side_tool="true" weight="0.38206896" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15532055" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32707182" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49674478" weight="0.4989154" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5032552" side_tool="true" weight="0.29929078" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.329718" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32707182" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1373698" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26966292" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32707182" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49674478" weight="0.4989154" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5032552" side_tool="true" weight="0.29929078" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.329718" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49674478" weight="0.38206896" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32707182" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5032552" side_tool="true" weight="0.38206896" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -529,82 +649,9 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="8" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/plugins/n3-charts/LineChart.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/q/q.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/angular/angular.min.js" />
-    <entry file="file://$PROJECT_DIR$/sla-monitor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/charts-morris.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3486">
-          <caret line="166" column="69" selection-start-line="166" selection-start-column="63" selection-end-line="166" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/plugins/morris/morris.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="5" column="390" selection-start-line="5" selection-start-column="390" selection-end-line="5" selection-end-column="390" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/plugins/angular/Chart.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/plugins/LineChart.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/demo_charts_morris.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="8" selection-end-line="68" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/plugins/angular/Chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="1672" column="4" selection-start-line="1672" selection-start-column="4" selection-end-line="1672" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/plugins/angular/angular-chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui-alerts-popups.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="349" column="127" selection-start-line="349" selection-start-column="108" selection-end-line="349" selection-end-column="127" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/plugins/bootstrap/bootstrap-select.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2142" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/bootstrap/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="4" column="33127" selection-start-line="4" selection-start-column="33127" selection-end-line="4" selection-end-column="33127" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/loginHandlerController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -614,13 +661,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/plugins/angular/smart-table.js" />
     <entry file="file://$USER_HOME$/Desktop/si-table.js" />
-    <entry file="file://$PROJECT_DIR$/form-elements.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="481" column="69" lean-forward="true" selection-start-line="480" selection-start-column="40" selection-end-line="485" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/plugins/angular/test2.js" />
     <entry file="file://$PROJECT_DIR$/js/plugins/angular/angular.min.js">
       <provider selected="true" editor-type-id="text-editor" />
@@ -647,13 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/navigationController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ui-elements.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14796">
@@ -668,20 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1156" column="1" selection-start-line="1156" selection-start-column="1" selection-end-line="1156" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bench-report.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sla-operations.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="81" column="93" selection-start-line="81" selection-start-column="93" selection-end-line="81" selection-end-column="111" />
         </state>
       </provider>
     </entry>
@@ -706,34 +725,6 @@
     <entry file="file://$USER_HOME$/Desktop/Solution/calculatorScript.js" />
     <entry file="file://$USER_HOME$/Desktop/Solution/jquery-1.12.3.min.js" />
     <entry file="file://$USER_HOME$/Desktop/Solution/calculator.html" />
-    <entry file="file://$PROJECT_DIR$/sla-metrics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bench-private-results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bench-results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sla-results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/fontawesome/font-awesome.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -758,43 +749,166 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/dbServices.js">
+    <entry file="file://$PROJECT_DIR$/js/demo_charts_morris.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1494">
-          <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
+        <state relative-caret-position="36">
+          <caret line="2" column="8" selection-end-line="68" selection-end-column="4" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Desktop/angular-chart.js-master/examples/app.css" />
+    <entry file="file://$USER_HOME$/Desktop/angular-chart.js-master/examples/app.js" />
+    <entry file="file://$PROJECT_DIR$/sla-monitor.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/form-layouts-two-column.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="344" column="36" lean-forward="true" selection-start-line="344" selection-start-column="36" selection-end-line="432" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/form-elements.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="610" column="68" lean-forward="true" selection-start-line="610" selection-start-column="40" selection-end-line="618" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bench-private-results.html___jb_tmp___" />
     <entry file="file://$PROJECT_DIR$/bench-operations.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11844">
-          <caret line="725" column="50" selection-start-line="725" selection-start-column="50" selection-end-line="725" selection-end-column="50" />
+        <state relative-caret-position="18">
+          <caret line="553" column="84" selection-start-line="553" selection-start-column="84" selection-end-line="554" selection-end-column="160" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui-panels.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="503" column="44" selection-start-line="496" selection-start-column="28" selection-end-line="508" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bench-queries.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="65" lean-forward="true" selection-start-line="1" selection-start-column="65" selection-end-line="1" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cost-model.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="62" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bench-results.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="53" column="94" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/navigationController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="83" column="34" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/plugins/jquery/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="10649" selection-start-line="1" selection-start-column="10649" selection-end-line="1" selection-end-column="10649" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bench-report.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" column="69" selection-start-line="29" selection-start-column="69" selection-end-line="29" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sla-auditor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="954">
+          <caret line="53" column="93" selection-start-line="53" selection-start-column="93" selection-end-line="53" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/dbServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2430">
+          <caret line="135" column="60" selection-start-line="135" selection-start-column="60" selection-end-line="135" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sla-metrics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-442">
+          <caret line="1" column="86" selection-start-line="1" selection-start-column="86" selection-end-line="1" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bench-private-results.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="48" column="67" lean-forward="true" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sla-results.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="41" column="65" lean-forward="true" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scale-results.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sla-scale.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="80" column="116" selection-start-line="80" selection-start-column="116" selection-end-line="80" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bench-metrics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="109" column="121" selection-start-line="109" selection-start-column="121" selection-end-line="109" selection-end-column="121" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" />
-            <element signature="e#28712#28719#1" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#72764#72771#1" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" />
-            <element signature="e#84316#84323#1" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/mainController.js">
+    <entry file="file://$PROJECT_DIR$/sla-operations.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="638" column="50" selection-start-line="638" selection-start-column="50" selection-end-line="638" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#45#0" />
-          </folding>
+        <state relative-caret-position="342">
+          <caret line="19" column="101" selection-start-line="19" selection-start-column="101" selection-end-line="19" selection-end-column="101" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="240" selection-start-line="240" selection-end-line="240" />
+        <state relative-caret-position="401">
+          <caret line="231" column="32" selection-start-line="231" selection-start-column="32" selection-end-line="231" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/mainController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="1140" column="20" selection-start-line="1140" selection-start-column="20" selection-end-line="1140" selection-end-column="20" />
         </state>
       </provider>
     </entry>

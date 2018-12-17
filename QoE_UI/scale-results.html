@@ -1,0 +1,48 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Scale Auditing Results</h2>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default" ng-init="slaF=''">
+                <div class="panel-heading">
+                    <h3 class="panel-title col-md-12">Scale Results for: <b>{{qoeUser}}</b>
+                        <button class="btn btn-info " style="float: right !important;" ng-click="launchSLAResults()"><i class="fa fa-refresh"></i></button>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Provider</th>
+                            <th>Service</th>
+                            <th>Scale Group</th>
+                            <th>scale CPU Util</th>
+                            <th>promised CPU Util</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="scaleResult in scaleResultsTable">
+                            <td>{{scaleResult.Date['$date']|date:'medium'}}</td>
+                            <td>{{scaleResult.Provider}}</td>
+                            <td>{{scaleResult.Service}}</td>
+                            <td>{{scaleResult.scaleGroup}}</td>
+                            <td>{{scaleResult.scaleCpuUtil}}%</td>
+                            <td>{{scaleResult.promisedCpuUtil}}%</td>
+                            <td ng-if="scaleResult.scaled" style="background-color: #6fe67e ">OK</td>
+                            <td ng-if="!scaleResult.scaled" style="background-color: #fd6b6b "> Not Scaled</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

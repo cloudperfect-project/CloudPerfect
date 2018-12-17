@@ -1,5 +1,6 @@
 <div class="page-title">
-    <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Analytics</h2>
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Performance/Cost Evaluation</h2>
+    <button class="btn btn-info btn-rounded pull-right" ng-click="nav=13"><span class="fa fa-pencil"></span>Edit Cost Model</button>
 </div>
 
 <!-- PAGE CONTENT WRAPPER -->
@@ -10,13 +11,135 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Panel Title</h3>
+                    <h3 class="panel-title">Filters</h3>
                 </div>
                 <div class="panel-body">
-                    Panel body
-                </div>
-            </div>
+                    <div class="row">
 
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label"  data-toggle="tooltip" data-placement="top" title="Specify the cost % to take under consideration in the evaluation">Cost Weight</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <div class="col-md-1">
+                                            <label class="check"><input type="radio" class="iradio" name="iradio" checked="checked" ng-model="performanceCostFilters.costPer" ng-value="0"/> 0%</label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="check"><input type="radio" class="iradio" name="iradio" ng-model="performanceCostFilters.costPer" ng-value="0.1" /> 10%</label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="check"><input type="radio" class="iradio" name="iradio" ng-model="performanceCostFilters.costPer" ng-value="0.2"/> 20%</label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="check"><input type="radio" class="iradio" name="iradio" ng-model="performanceCostFilters.costPer" ng-value="0.5"/> 50%</label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="check"><input type="radio" class="iradio" name="iradio" ng-model="performanceCostFilters.costPer" ng-value="0.7"/> 70%</label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="check"><input type="radio" class="iradio" name="iradio" ng-model="performanceCostFilters.costPer" ng-value="0.9"/> 90%</label>
+                                        </div>
+                                    </div>
+                                    <span class="help-block">Select how much the cost should be taken under consideration</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Select Benchmark:</label>
+                                <div class="col-md-10 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Tool Filter</span>
+                                        <select class="form-control" id="tool-search"
+                                                ng-options="tool as tool.id for tool in benchmarkTests"
+                                                ng-model="toolF" ng-change="changeTool(toolF)">
+                                            <option ng-selected="tooF==''" value="">Select Tool</option>
+                                        </select>
+                                        <span class="input-group-addon">Workload Filter</span>
+                                        <select class="form-control" id="workload-search"
+                                                ng-options="workload as workload.id for workload in listofWorkload"
+                                                ng-model="workloadF" >
+                                            <option ng-selected="workloadF==''" value="">Select Workload</option>
+                                        </select>
+                                    </div>
+                                    <span class="help-block">Select the tool and workload for performance evaluation</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Select Provider:</label>
+                                <div class="col-md-10 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Provider Filter</span>
+                                        <select class="form-control" id="provider"
+                                                ng-options="provider for provider in ListProviders"
+                                                ng-model="performanceCostFilters.provider" >
+                                            <option ng-selected=""  value="">Select Provider</option>
+                                        </select>
+                                    </div>
+                                    <span class="help-block">Select specific provider for evaluation</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Hardware Filtering</label>
+                                <div class="col-md-10">
+                                    <div class="input-group col-md-12">
+                                        <div class="col-md-3">
+                                            <span class="input-group-addon"  data-toggle="tooltip" data-placement="top" title="Specify the exact amount of dedicated CPU's a service should have"> CPU #</span>
+                                            <select class="form-control" id="VCPU"
+                                                    ng-options="number for number in numbersList"
+                                                    ng-model="performanceCostFilters.cpu" >
+                                                <option ng-selected="" value="">Select # VCPU</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Specify the exact amount of dedicated RAM a service should have">RAM Size</i></span>
+                                            <select class="form-control" id="VRAM"
+                                                    ng-options="number for number in numbersList"
+                                                    ng-model="performanceCostFilters.ram" >
+                                                <option ng-selected="" value=""> Select VRAM Size</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Specify the minimum amount of virtual machines a service allows to create"> Max # VM</span>
+                                            <input class="form-control" type="number" ng-model="performanceCostFilters.vm">
+                                        </div>
+                                    </div>
+                                    <span class="help-block">Specify the specific amount of dedicated CPU, RAM or VMs allowed of the cloud Service</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Actions</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <button class="btn btn-info btn-lg " style="margin-right: 10px;" ng-click="refreshCostPerformanceFilter()">
+                                            <span class="fa fa-refresh"></span>Delete Filters</button>
+                                        <button class="btn btn-primary btn-lg " ng-click="getProviderBenchCategForCost()"><span class="fa fa-search"></span>Apply Filters</button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Performance Cost Results</h3><i ng-show="proCost" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                <button class="btn btn-success btn-rounded pull-right" ng-click="downloadCostAnalysis()"><span class="fa fa-download"></span>Download Analysis</button>
+            </div>
+            <div class="panel-body" ng-show="costModelCreated">
+                <canvas id="barPC" class="chart chart-bar" chart-data="PCData" chart-labels="PCLabels" chart-series="PCseries" chart-options="options">
+                </canvas>
+            </div>
+            <div class="panel-body" ng-show="!costModelCreated">
+                <h5>Please specify the filters to get the cost performance evaluation...</h5>
+            </div>
+        </div>
         </div>
     </div>
 </div>

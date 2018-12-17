@@ -1,6 +1,25 @@
 <div class="page-title">
-    <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Private Results</h2>
-
+    <div class="row">
+        <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Private Results</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <span class="input-group-addon">Tool Filter</i></span>
+            <select class="form-control" id="tool-search"
+                    ng-options="tool as tool.id for tool in benchmarkTests"
+                    ng-model="toolF" ng-change="changeTool(toolF)">
+                <option ng-selected="tooF==''" value="">Select Tool</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <span class="input-group-addon">Workload Filter</i></span>
+            <select class="form-control" id="workload-search"
+                    ng-options="workload as workload.id for workload in listofWorkload"
+                    ng-model="workloadF" >
+                <option ng-selected="workloadF==''" value="">Select Workload</option>
+            </select>
+        </div>
+    </div>
 </div>
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap" >
@@ -24,14 +43,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                       <tr ng-repeat="bench in privateBenchResults.results | orderBy:'$date'">
+                       <tr ng-repeat="bench in privateBenchResults.results | orderBy:'-starttime' | filter:{tool: toolF.id} | filter:{workload: workloadF.id}">
                            <td class="col-md-1" ng-show="showMore==1"><button class="btn btn-success" ng-click="showMore=2"><i class="fa fa-plus"></i></button></td>
                            <td class="col-md-1" ng-show="showMore==2"><button class="btn btn-warning" ng-click="showMore=1"><i class="fa fa-minus"></i></button></td>
-                           <td class="col-md-1" > {{bench.start['$date'] | date: 'yyyy-MM-dd'}}</td>
+                           <td class="col-md-1" > {{bench.starttime['$date']|date:'medium'}}</td>
                            <td class="col-md-1" > {{bench.provider.id}}</td>
                            <td  class="col-md-1">{{bench.provider.size}}</td>
-                           <td class="col-md-1" > {{bench.tool}}</td>
-                           <td  class="col-md-1">{{bench.workload}}</td>
+                           <td class="col-md-1" > {{bench.test.tool}}</td>
+                           <td  class="col-md-1">{{bench.test.workload}}</td>
 
                            <td class="col-md-6" ng-show="showMore==2">
                                <table class="table table-bordered">

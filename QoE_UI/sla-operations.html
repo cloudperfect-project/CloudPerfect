@@ -17,7 +17,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                         <select class="form-control" id="provider"
-                                                ng-options="provider for provider in ListProviders"
+                                                ng-options="provider for provider in ListProvidersSLA"
                                                 ng-model="SLALaunch.providerName" ng-change="changeService(SLALaunch.providerName)" >
                                             <option ng-selected="SLALaunch.providerName==''" value="">Select Provider</option>
                                         </select>
@@ -75,6 +75,20 @@
                                 </div>
                             </div>
                             <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">SLA Period:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        <select class="form-control" id="period"
+                                                ng-options="period for period in slaperiod"
+                                                ng-model="customPeriod" >
+                                            <option ng-selected="SLALaunch.serviceName==''" value="">Select Period</option>
+                                        </select>
+                                    </div>
+                                    <span class="help-block">Please provide a custom SLA evaluation period</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
                                 <label class="col-md-3 col-xs-12 control-label">Email Notification :<br><span class="help-block">(Do you wish to get mail notifications for the status of Cloud Service?)</span></label>
                                 <div class="col-md-6 col-xs-12">
                                     <div class="col-md-3">
@@ -95,12 +109,14 @@
                                             </label>
                                         </div>
                                         <div class="col-md-3" ng-show="customAvailability">
-                                            <input type="text" class="form-control"  placeholder="Soft Availability" ng-model="softAvailability"/>
-                                            <input type="text" class="form-control"  placeholder="Hard Availability" ng-model="hardAvailability"/>
+                                            <span>Soft Limit</span><input type="text" class="form-control"  placeholder="Soft Availability" ng-model="softAvailability"/>
+                                            <span>Hard Limit</span><input type="text" class="form-control"  placeholder="Hard Availability" ng-model="hardAvailability"/>
+                                            <span>Downtime Threshold </span><input type="text" class="form-control"  placeholder="Hard Availability" ng-model="downtime"/>
                                         </div>
                                     <span class="help-block col-md-12">Please define all the metrics and the appropriate values in % </span>
                                 </div>
                             </div>
+
                         </div>
                         <div class="panel-footer">
 

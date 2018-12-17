@@ -1,5 +1,6 @@
 <div class="page-title">
     <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Log Files</h2>
+    <button class="btn btn-info " style="float: right !important;" ng-click="getBenchLogs()"><i class="fa fa-refresh"></i></button>
     <div class="col-md-6">
     </div>
 </div>
@@ -26,7 +27,7 @@
                             <th>Error Report</th>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="exec in benchLogFiles | filter:qoeUser">
+                                <tr ng-repeat="exec in benchLogFiles | orderBy:'-time' | filter:qoeUser">
                                     <td>{{exec.schedule_id}}</td>
                                     <td>{{exec.time['$date']|date:'medium'}}</td>
                                     <td ng-if="exec.status=='ERROR'" style="background-color: #fd6b6b ">{{exec.status}}</td>

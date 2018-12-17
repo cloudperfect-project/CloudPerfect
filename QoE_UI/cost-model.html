@@ -1,0 +1,68 @@
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Cost Model</h2>
+    <button class="btn btn-info btn-rounded pull-right" ng-click="nav=9"><span class="fa fa-money"></span>Performance Cost Evaluation</button>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Table of Services</h3>
+                    <button class="btn btn-lg btn-rounded btn-warning pull-right" ng-click="saveCostModel()"><span class="fa fa-save"></span>Update Cost Model</button>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-hover">
+                    <thead>
+                    <th class="col-md-1">Provider</th>
+                    <th class="col-md-10">Services</th>
+                    <th class="col-md-1">Action</th>
+                    <tbody>
+                        <tr ng-repeat="costT in costModelTable">
+                            <td class="col-md-1">{{costT.provider}}</td>
+                            <td class="col-md-10">
+                                <table class="table table-bordered">
+                                    <tr ng-repeat="costS in costT.costInfo">
+                                        <td class="col-md-2"><b>Service Name:</b><input type="text" ng-model="costS.size"></td>
+                                        <td class="col-md-1"><b>Cost Per CPU:</b><input type="text" ng-model="costS.costCPU"></td>
+                                        <td class="col-md-1"><b>Cost Per VM:</b><input type="text" ng-model="costS.costVM"></td>
+                                        <td class="col-md-1"><b>Cost Per Month:</b><input type="text" ng-model="costS.costMONTH"></td>
+                                        <td class="col-md-1"><b>Max num of VM:</b><input type="text" ng-model="costS.maxVM"></td>
+                                        <td class="col-md-1"><b>Number of CPUs:</b><input type="text" ng-model="costS.CPUNum"></td>
+                                        <td class="col-md-1"><b>RAM Size:</b><input type="text" ng-model="costS.RAMSize"></td>
+                                        <td class="col-md-1"><button class="btn btn-danger" ng-click="deleteServiceCost(costS,costT.costInfo)"><i class="fa fa-trash-o"></i></button> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-2"><b>Service Name:</b><input type="text" ng-model="newcostService.size"></td>
+                                        <td class="col-md-1"><b>Cost Per CPU:</b><input type="text" ng-model="newcostService.costCPU"></td>
+                                        <td class="col-md-1"><b>Cost Per VM:</b><input type="text" ng-model="newcostService.costVM"></td>
+                                        <td class="col-md-1"><b>Cost Per Month:</b><input type="text" ng-model="newcostService.costMONTH"></td>
+                                        <td class="col-md-1"><b>Max num of VM:</b><input type="text" ng-model="newcostService.maxVM"></td>
+                                        <td class="col-md-1"><b>Number of CPUs:</b><input type="text" ng-model="newcostService.CPUNum"></td>
+                                        <td class="col-md-1"><b>RAM Size:</b><input type="text" ng-model="newcostService.RAMSize"></td>
+                                        <td class="col-md-1"><button class="btn btn-success" ng-click="pushServiceCost(costT.costInfo)"><i class="fa fa-plus-circle"></i></button> </td>
+
+                                    </tr>
+                                </table>
+                            </td>
+                            <td class="col-md-1"><button class="btn btn-danger" ng-click="deleteCostProvider(costT)"><i class="fa fa-trash-o"></i></button> </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-2"><b>New provider Name:</b></td>
+                                <td class="col-md-3"><input type="text" ng-model="newCostProvider.provider"></td>
+                                <td class="col-md-1"><button class="btn btn-success" ng-click="addCostProvider()"><i class="fa fa-plus-circle"></i></button>  </td>
+                            </tr>
+                    </tbody>
+                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

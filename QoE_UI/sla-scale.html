@@ -1,0 +1,133 @@
+
+            <div class="col-md-12">
+
+                <form class="form-horizontal">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">3ALib Scale Auditor Launch</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Please fill the form with the appropriate fields in order to launch Scaling Auditor</p>
+                        </div>
+                        <div class="panel-body form-group-separated">
+
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important" >
+                                <label class="col-md-3 col-xs-12 control-label">Provider Name:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        <select class="form-control" id="provider22"
+                                                ng-options="provider for provider in ListProvidersSLA"
+                                                ng-model="ScaleLaunch.provider" ng-change="changeService(ScaleLaunch.provider)" >
+                                            <option ng-selected="ScaleLaunch.provider==''" value="">Select Provider</option>
+                                        </select>
+
+                                    </div>
+                                    <span class="help-block">Please provide the name of the provider</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Service Name:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                        <select class="form-control" id="service22"
+                                                ng-options="service for service in listofServices"
+                                                ng-model="ScaleLaunch.service" >
+                                            <option ng-selected="ScaleLaunch.service==''" value="">Select Service</option>
+                                        </select>
+                                    </div>
+                                    <span class="help-block">Please provide the name of the service</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Cloud Access ID:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                        <input type="password" class="form-control" ng-model="ScaleLaunch.cloudUser"/>
+                                    </div>
+                                    <span class="help-block">Please provide the Cloud User info</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Secret Key:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-cloud"></span></span>
+                                        <input type="password" class="form-control" ng-model="ScaleLaunch.apiKey"/>
+                                    </div>
+                                    <span class="help-block">Please provide the API key </span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Scale Group:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-arrows-h"></span></span>
+                                        <input type="text" class="form-control" ng-model="ScaleLaunch.scale_group"/>
+                                    </div>
+                                    <span class="help-block">Please provide the scale group you want to monitor</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">SLA Scale Time:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-arrows-h"></span></span>
+                                        <input type="text" class="form-control" ng-model="ScaleLaunch.promised_Scale_Time"/>
+                                    </div>
+                                    <span class="help-block">Please provide the promised time for scaling in minutes </span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">SLA Scale CPU Util:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-arrows-h"></span></span>
+                                        <input type="text" class="form-control" ng-model="ScaleLaunch.promised_cpu_util"/>
+                                    </div>
+                                    <span class="help-block">Please provide the upper threshold of the CPU Utilization for scaling </span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">Max VM Instances:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-arrows-h"></span></span>
+                                        <input type="text" class="form-control" ng-model="ScaleLaunch.max_instances"/>
+                                    </div>
+                                    <span class="help-block">Please provide the Max number of instances allowed for scaling </span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 0px!important; margin-right: 0px!important">
+                                <label class="col-md-3 col-xs-12 control-label">CPU Util Violation Time:</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="fa fa-arrows-h"></span></span>
+                                        <select class="form-control" id="minutes"
+                                                ng-options="minutes for minutes in minuteList"
+                                                ng-model="ScaleLaunch.minutes" >
+                                            <option ng-selected="ScaleLaunch.minutes==''" value="">Select Minute Interval</option>
+                                        </select>
+                                    </div>
+                                    <span class="help-block">Please provide the time range on which the CPU Util is evaluated </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel-footer">
+
+                            <button class="btn btn-primary pull-right" ng-click="initiateLaunchScale()">Launch Scale Auditor</button>
+                        </div>
+                    </div>
+                    <div class="alert alert-success" role="alert" ng-show="successScaleLaunch">
+                        <button type="button" class="close" data-dismiss="alert" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <strong>Well done!</strong> Scale Auditor has been successfully launched.
+                    </div>
+                </form>
+
+            </div>
+
+    <!-- END PAGE CONTENT WRAPPER -->

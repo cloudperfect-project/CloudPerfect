@@ -9,8 +9,8 @@
     <script src="js/plugins/angular/angular.min.js"></script>
     <script type="text/javascript" src="js/plugins/angular/Chart.min.js"></script>
     <script type="text/javascript" src="js/plugins/angular/angular-chart.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+    <script src="js/plugins/angular/angular-resource.min.js"></script>
+    <script src="js/plugins/angular/angular-route.min.js"></script>
     <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
     <script src="js/mainController.js"></script>
     <script src="js/loginHandlerController.js"></script>
@@ -53,7 +53,6 @@
                                 <a href="" class="profile-control-left"><span class="fa fa-cog"></span></a>
                             </div>
                         </div>
-
                     </div>
                 </li>
                 <li class="xn-title">Navigation</li>
@@ -61,11 +60,13 @@
                     <a href="" ng-click="nav=1"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
                 </li>
                 <li class="xn-openable">
-                    <a href="tables.html"><span class="fa fa-table"></span> <span class="xn-text">SLA Monitoring</span></a>
+                    <a href="tables.html"><span class="fa fa-table"></span> <span class="xn-text">SLA/Scale Monitoring</span></a>
                     <ul>
-                        <li><a href="" ng-click="nav=2"><span class="fa fa-align-justify"></span> SLA Results</a></li>
-                        <li><a href="" ng-click="nav=3"><span class="fa fa-sort-alpha-desc"></span> Custom Queries</a></li>
-                        <li><a href="" ng-click="nav=4"><span class="fa fa-download"></span> SLA Operations</a></li>
+                        <li><a href="" ng-click="nav=2"><span class="fa fa-align-justify"></span> SLA Availability Results</a></li>
+                        <li><a href="" ng-click="nav=3"><span class="fa fa-sort-alpha-desc"></span> Auditors list</a></li>
+                        <li><a href="" ng-click="nav=15"><span class="fa fa-arrows-h"></span> SLA Scale Results</a></li>
+                        <li><a href="" ng-click="nav=14"><span class="fa fa-arrows-h"></span> SLA Scale Auditor</a></li>
+                        <li><a href="" ng-click="nav=4"><span class="fa fa-download"></span> SLA Availability Auditor</a></li>
                         <!-- <li><a href="" ng-click="nav=10"><span class="fa fa-download"></span> Availability Monitoring</a></li>-->
                     </ul>
                 </li>
@@ -74,7 +75,6 @@
                     <ul>
                         <li><a href=""ng-click="nav=5"><span class="fa fa-align-justify"></span> Benchmarking Results</a></li>
                         <li><a href=""ng-click="nav=11"><span class="fa fa-align-justify"></span> Bench Private Results</a></li>
-                        <li><a href=""ng-click="nav=6"><span class="fa fa-sort-alpha-desc"></span> Custom queries</a></li>
                         <li><a href=""ng-click="nav=7"><span class="fa fa-download"></span> Benchmarking Operations</a></li>
                         <li><a href=""ng-click="nav=12"><span class="fa fa-cogs"></span> Benchmark Reporting</a></li>
                     </ul>
@@ -83,7 +83,8 @@
                     <a href="tables.html"><span class="fa fa-table"></span> <span class="xn-text">Analytics</span></a>
                     <ul>
                         <li><a href=""ng-click="nav=8"><span class="fa fa-align-justify"></span> Provider SLA Ranking</a></li>
-                        <li><a href="" ng-click="nav=9"><span class="fa fa-sort-alpha-desc"></span> Metrics for Benchmarking</a></li>
+                        <li><a href=""ng-click="nav=6"><span class="fa fa-sort-alpha-desc"></span> Bench Analytics</a></li>
+                        <li><a href="" ng-click="nav=9"><span class="fa fa-money"></span> Performance VS Cost </a></li>
                     </ul>
                 </li>
 
@@ -161,8 +162,8 @@
                             </div>
                             <div class="widget-data">
                                 <div class="widget-int num-count">Cloud</div>
-                                <div class="widget-title">Metrics/Analysis</div>
-                                <div class="widget-subtitle">Benchmarking & SLA Statistics</div>
+                                <div class="widget-title">Analytics</div>
+                                <div class="widget-subtitle">SLA Strictness Ranking</div>
                             </div>
                         </div>
                         <!-- END WIDGET MESSAGES -->
@@ -171,7 +172,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5 ">
-                        <div class="widget widget-primary" ng-click="nav=7">
+                        <div class="widget widget-primary" ng-click="nav=7" >
                             <div class="widget-title">LAUNCH</div>
                             <div class="widget-subtitle">Benchmark</div>
 
@@ -189,7 +190,7 @@
             </div>
             <!-- END PAGE CONTENT WRAPPER -->
             <sla-results ng-show="nav==2"></sla-results>
-            <sla-queries ng-show="nav==3"></sla-queries>
+            <sla-auditor ng-show="nav==3"></sla-auditor>
             <sla-operations ng-show="nav==4"></sla-operations>
             <sla-monitor ng-show="nav==10"></sla-monitor>
             <bench-results ng-show="nav==5"></bench-results>
@@ -199,6 +200,9 @@
             <sla-metrics ng-show="nav==8"></sla-metrics>
             <bench-metrics ng-show="nav==9"></bench-metrics>
             <bench-report ng-show="nav==12"></bench-report>
+            <cost-model ng-show="nav==13"></cost-model>
+            <scale-auditor ng-show="nav==14"></scale-auditor>
+            <scale-results ng-show="nav==15"></scale-results>
         </div>
 
         <!-- END PAGE CONTENT -->

@@ -3,7 +3,7 @@
  */
 var mainHandler = angular.module('mainHandler',['loginHandler','navigationHandler','dbConnect','chart.js','ui.bootstrap']);
 
-mainHandler.controller('mainController', ['$scope','userprofile','dbService', function($scope,userprofile,dbService) {
+mainHandler.controller('mainController', ['$scope','$timeout','userprofile','dbService', function($scope,$timeout,userprofile,dbService) {
     //table pagination
 
     $scope.viewby = 10;
@@ -36,6 +36,7 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
     $scope.qoeUserInfo={};
     $scope.authenticated=false;
     $scope.successSLALaunch=false;
+    $scope.successScaleLaunch=false;
     $scope.successBENCHLaunch=false;
     $scope.successBENCHUpdate=false;
     $scope.customAvailability=false;
@@ -44,12 +45,34 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
     $scope.extraParameters2=false;
     $scope.softAvailability="0";
     $scope.hardAvailability="0";
+    $scope.downtime="0";
+    $scope.customPeriod="monthly";
+    $scope.slaperiod=["monthly","year","week"]
     $scope.benchTable=[];
     $scope.privateBenchResults=[];
     $scope.toolList=["cfd","filebench","dacapo-ft","ycsb-mysql"];
     $scope.benchmarkTests=[];
     $scope.visibilityOptions=["private","public", "organizational"]
     $scope.scheduleID="";
+    $scope.providerF="";
+    $scope.serviceF="";
+    $scope.toolF={};
+    $scope.workloadF={};
+    $scope.finishRenderAnalytics=false;
+    $scope.agrAnalytics=true;
+    $scope.costModelCreated=false;
+    $scope.proCost=false;
+    $scope.slaResultsTable=[];
+    $scope.scaleResultsTable=[];
+    $scope.performanceCostFilters={
+        "costPer":0,
+        "provider":"",
+        "cpu":"",
+        "ram":"",
+        "vm":0
+    };
+    $scope.numbersList=["1","2","3","4","5","6","8","10","12","16","18","24","32","64"];
+    $scope.minuteList=["5","10","15","20","25","30"];
     $scope.benchResultForStorage=
     {
         provider:"",
@@ -57,6 +80,20 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
         workload:"",
         tool:"",
         metrics:[]
+    };
+    $scope.newcostService={
+        "size" : "",
+        "costCPU" : "",
+        "costVM" : "",
+        "costMONTH" : "",
+        "maxVM" : "",
+        "CPUNum" : 0,
+        "RAMSize" : 0
+    };
+    $scope.newCostProvider={
+        "provider": "",
+        "costInfo":[]
+
     };
 
     $scope.changeTool= function(tool){
@@ -127,7 +164,8 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
             "vm_user": "",//username optional 2nd phase
             "platform": "",//optional 2nd optional
             "key_name": "",//optional 2nd optional
-            "ssh_private_key": ""//optional 2nd
+            "ssh_private_key": "",//optional 2nd
+            "post_create_script":""//optional 2nd
         }
     };
 
@@ -167,7 +205,22 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
         "APIKey":"",
         "softAvailability":"",
         "hardAvailability":""
+
     };
+    $scope.ScaleLaunch={
+        "scale_group":"",
+        "promised_Scale_Time":"",
+        "promised_cpu_util":"",
+        "promised_cpu_util_in":"",
+        "max_instances":"",
+        "min_instances":"",
+        "minutes":"",
+        "provider": "",
+        "service":"",
+        "cloudUser": "",
+        "apiKey":""
+
+};
 
     $scope.benches=[];
     $scope.pushBench=function(){
@@ -178,11 +231,242 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
         $scope.benches.splice(index, 1);
 
     };
+
+    //cost model CRUD
+    $scope.pushServiceCost=function(cost){
+        cost.push($scope.newcostService);
+        $scope.newcostService={
+            "size" : "",
+            "costCPU" : "",
+            "costVM" : "",
+            "costMONTH" : "",
+            "maxVM" : "",
+            "CPUNum" : 0,
+            "RAMSize" : 0
+        };
+    };
+    $scope.deleteServiceCost=function(cost,list){
+        var index3 = list.indexOf(cost);
+        list.splice(index3,1);
+    };
+    $scope.deleteCostProvider=function(provider){
+        var index4 = $scope.costModelTable.indexOf(provider);
+
+        $scope.costModelTable.splice(index4,1);
+    };
+    $scope.addCostProvider=function(){
+        $scope.costModelTable.push($scope.newCostProvider);
+        $scope.newCostProvider={
+            "provider": "",
+            "costInfo":[]
+
+        }
+    };
+    $scope.costModelforStorage={
+        "UserId" : "",
+        "ProviderCostModels" : []
+    };
+    $scope.saveCostModel = function(){
+        $scope.costModelforStorage.UserId=$scope.qoeUser;
+        $scope.costModelforStorage.ProviderCostModels=$scope.costModelTable;
+        for(var i=0;i< $scope.costModelforStorage.ProviderCostModels.length; i++){
+            delete $scope.costModelforStorage.ProviderCostModels[i]["$$hashKey"];
+            for (var k=0;k<$scope.costModelforStorage.ProviderCostModels[i].costInfo.length;k++){
+                delete  $scope.costModelforStorage.ProviderCostModels[i].costInfo[k]["$$hashKey"];
+            }
+        };
+        $scope.costidString='criteria={"UserId":"'+$scope.costModelforStorage.UserId+'"}';
+        $scope.costidString=$scope.costidString+"&newobj="+JSON.stringify($scope.costModelforStorage);
+        console.log($scope.costidString);
+        dbService.costModelUpdate($scope.costidString,function (success) {
+            console.log("cost model saved");
+        });
+    };
+
+    //cost end
+    //performance cost analysis
+    $scope.refreshCostPerformanceFilter= function(){
+        $scope.toolF="";
+        $scope.workloadF="";
+        $scope.performanceCostFilters={
+            "costPer":0,
+            "provider":"",
+            "cpu":"",
+            "ram":"",
+            "vm":0
+        };
+    };
+    $scope.filteredCostModel=[];
+    $scope.getProviderBenchCategForCost=function(){
+        $scope.proCost=true;
+        console.log($scope.performanceCostFilters.cpu);
+        console.log($scope.performanceCostFilters.ram);
+        $scope.filteredCostModel=[];
+        $scope.BenchResultsAnalytics=[];
+        $scope.ProviderBenchList= dbService.GETBenchGroups($scope.benchProvidersGrouping, function (success) {
+            $scope.ProviderBenchList= $scope.ProviderBenchList.retval;
+            console.log($scope.ProviderBenchList);
+
+            for (var o=0; o<$scope.ProviderBenchList.length; o++){
+                for(var k=0; k<$scope.benchTable.length; k++) {
+                    if ($scope.benchTable[k].provider == $scope.ProviderBenchList[o]['provider.id'] && $scope.benchTable[k].size == $scope.ProviderBenchList[o]['provider.size'] && $scope.benchTable[k].tool == $scope.toolF.id && $scope.benchTable[k].workload == $scope.workloadF.id) {
+                        if($scope.performanceCostFilters.provider!=""&&$scope.performanceCostFilters.provider!=null) {
+                            if($scope.performanceCostFilters.provider== $scope.ProviderBenchList[o]['provider.id']){
+                            $scope.BenchResultsAnalytics.push($scope.benchTable[k]);
+                            }
+                        }else{$scope.BenchResultsAnalytics.push($scope.benchTable[k]);}
+                    }
+                }
+            }
+            console.log($scope.BenchResultsAnalytics);
+            if(($scope.performanceCostFilters.cpu!=""||$scope.performanceCostFilters.ram!="")&&($scope.performanceCostFilters.cpu!=null||$scope.performanceCostFilters.ram!=null)||$scope.performanceCostFilters.vm!=0)
+            {
+
+               // $scope.HardwareFiltering();
+                $scope.hardwareFilteringSplice();
+            }
+            else{
+                $scope.filteredCostModel= angular.copy($scope.costModelTable);
+                $scope.performCostAnalysis();
+            }
+        });
+        console.log("provider benchmark filtering done!");
+
+    };
+
+    $scope.HardwareFiltering=function(){
+        $scope.filteredCostModel=[];
+        for(var k=0;k<$scope.costModelTable.length;k++){
+            $scope.filteredCostModel.push({"provider":$scope.costModelTable[k].provider,"costInfo":[]});
+            for(var z=0; z< $scope.costModelTable[k].costInfo.length; z++){
+                if ($scope.performanceCostFilters.cpu==$scope.costModelTable[k].costInfo[z].CPUNum&& $scope.performanceCostFilters.ram==$scope.costModelTable[k].costInfo[z].RAMSize){
+                    $scope.filteredCostModel[k].costInfo.push($scope.costModelTable[k].costInfo[z]);
+                    //console.log($scope.filteredCostModel[k].costInfo);
+               }
+            }
+
+        }
+        console.log($scope.filteredCostModel);
+        $scope.performCostAnalysis();
+
+    };
+    $scope.cpuflag=true;
+    $scope.ramflag=true;
+
+    $scope.hardwareFilteringSplice=function(){
+        $scope.cpuflag=true;
+        $scope.ramflag=true;
+        $scope.filteredCostModel=angular.copy($scope.costModelTable);
+        for(var k=0; k<$scope.costModelTable.length; k++){
+            for(var z=0; z< $scope.costModelTable[k].costInfo.length; z++){
+                if($scope.performanceCostFilters.cpu!=""&&$scope.performanceCostFilters.cpu!= null){
+                    if($scope.performanceCostFilters.cpu!=$scope.costModelTable[k].costInfo[z].CPUNum){
+                        var index = $scope.filteredCostModel[k].costInfo.indexOf($scope.filteredCostModel[k].costInfo[z]);
+                        $scope.filteredCostModel[k].costInfo.splice(index, 1);
+                        $scope.cpuflag=false;
+                    }
+                }
+                if($scope.performanceCostFilters.ram!=""&&$scope.performanceCostFilters.ram!= null){
+                    if($scope.performanceCostFilters.ram!=$scope.costModelTable[k].costInfo[z].RAMSize){
+                        if($scope.cpuflag){
+                        var index2 = $scope.filteredCostModel[k].costInfo.indexOf($scope.filteredCostModel[k].costInfo[z]);
+                        $scope.filteredCostModel[k].costInfo.splice(index2, 1);
+                            $scope.ramflag=false;
+                        }
+                    }
+                }
+                if($scope.performanceCostFilters.vm > $scope.costModelTable[k].costInfo[z].maxVM){
+                    if($scope.cpuflag&&$scope.ramflag){
+                        var index6 = $scope.filteredCostModel[k].costInfo.indexOf($scope.filteredCostModel[k].costInfo[z]);
+                        $scope.filteredCostModel[k].costInfo.splice(index6, 1);
+                    }
+                }
+                $scope.cpuflag=true;
+                $scope.ramflag=true;
+
+            }
+
+        }
+        console.log($scope.filteredCostModel);
+        console.log("cost Model Filtering");
+        $scope.performCostAnalysis();
+    };
+    $scope.PCseries = ["Monthly Profitability", "CPU Profitability","VM Profitability"];
+    $scope.PCLabels=[];
+    $scope.PCData=[[],[],[]];
+    $scope.performCostAnalysis=function(){
+        $scope.PCLabels=[];
+        $scope.PCData=[[],[],[]];
+        for(var p=0; p < $scope.BenchResultsAnalytics.length; p++){
+            if($scope.BenchResultsAnalytics[0].metrics.length==1){
+                for(var c=0; c< $scope.filteredCostModel.length;c++){
+                    if($scope.BenchResultsAnalytics[p].provider==$scope.filteredCostModel[c].provider){
+                        for(var c1=0;c1<$scope.filteredCostModel[c].costInfo.length; c1++){
+                            if($scope.filteredCostModel[c].costInfo[c1].size==$scope.BenchResultsAnalytics[p].size){
+                                $scope.PCData[0].push((1/$scope.calcAVG($scope.BenchResultsAnalytics[p].metrics[0].values)*100*(1-$scope.performanceCostFilters.costPer))+(1/$scope.filteredCostModel[c].costInfo[c1].costMONTH*100*($scope.performanceCostFilters.costPer)));
+                                $scope.PCData[1].push((1/$scope.calcAVG($scope.BenchResultsAnalytics[p].metrics[0].values)*100*(1-$scope.performanceCostFilters.costPer))+(1/$scope.filteredCostModel[c].costInfo[c1].costCPU*100*($scope.performanceCostFilters.costPer)));
+                                $scope.PCData[2].push((1/$scope.calcAVG($scope.BenchResultsAnalytics[p].metrics[0].values)*100*(1-$scope.performanceCostFilters.costPer))+(1/$scope.filteredCostModel[c].costInfo[c1].costVM*100*($scope.performanceCostFilters.costPer)));
+                                $scope.PCLabels.push($scope.BenchResultsAnalytics[p].provider+"|"+$scope.BenchResultsAnalytics[p].size);
+                            }
+                        }
+                    }
+                }
+            }
+            if($scope.BenchResultsAnalytics[0].metrics.length>1){
+                for(var cc=0; cc< $scope.filteredCostModel.length;cc++){
+                    if($scope.BenchResultsAnalytics[p].provider==$scope.filteredCostModel[cc].provider){
+                        for(var cc1=0;cc1<$scope.filteredCostModel[cc].costInfo.length; cc1++){
+                            if($scope.filteredCostModel[cc].costInfo[cc1].size==$scope.BenchResultsAnalytics[p].size){
+                                for(var cc2=0; cc2<$scope.BenchResultsAnalytics[p].metrics.length; cc2++){
+                                    if($scope.BenchResultsAnalytics[p].metrics[cc2].name=="duration"||$scope.BenchResultsAnalytics[p].metrics[cc2].name=="Duration"){
+                                        $scope.PCData[0].push((1/$scope.calcAVG($scope.BenchResultsAnalytics[p].metrics[cc2].values)*100*(1-$scope.performanceCostFilters.costPer))+(1/$scope.filteredCostModel[cc].costInfo[cc1].costMONTH*100*($scope.performanceCostFilters.costPer)));
+                                        $scope.PCData[1].push((1/$scope.calcAVG($scope.BenchResultsAnalytics[p].metrics[cc2].values)*100*(1-$scope.performanceCostFilters.costPer))+(1/$scope.filteredCostModel[cc].costInfo[cc1].costCPU*100*($scope.performanceCostFilters.costPer)));
+                                        $scope.PCData[2].push((1/$scope.calcAVG($scope.BenchResultsAnalytics[p].metrics[cc2].values)*100*(1-$scope.performanceCostFilters.costPer))+(1/$scope.filteredCostModel[cc].costInfo[cc1].costVM*100*($scope.performanceCostFilters.costPer)));
+                                        $scope.PCLabels.push($scope.BenchResultsAnalytics[p].provider+"|"+$scope.BenchResultsAnalytics[p].size);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            //get on complex benchmarks duration
+            //end of complex benchmark duration
+        }
+        $timeout(function () {
+                $scope.costModelCreated=true;
+                $scope.proCost=false;
+            }
+            , 2000);
+
+    };
+    $scope.downloadCostAnalysis= function(){
+        $scope.DataJson={
+            "services":$scope.PCLabels,
+            "Metrics":$scope.PCseries,
+            "Data": $scope.PCData
+        }
+        var data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.DataJson));
+        var downloader = document.createElement('a');
+
+        downloader.setAttribute('href', data);
+        downloader.setAttribute('download', 'Cost_Analysis.json');
+        downloader.click();
+
+
+    };
+    //end of performance cost analysis
     // provider service combination
     $scope.listofServices=[];
-    $scope.ListProviders= ["aws", "Microsoft","Google", "Cosmote","ULM", "Filab"];
+    $scope.ListProviders= ["AWS", "Microsoft","Google", "COSMOTE","ULM", "FIWARE"];
+    $scope.ListProvidersSLA= ["aws", "Microsoft","Google", "Cosmote","ULM", "FIWARE"];
     $scope.changeService= function(provider){
         switch(provider) {
+            case "AWS":
+                $scope.listofServices=["ec2","ec3"];
+                $scope.BenchLaunch.provider.driver="ec2";
+                break;
             case "aws":
                 $scope.listofServices=["ec2","ec3"];
                 $scope.BenchLaunch.provider.driver="ec2";
@@ -195,6 +479,10 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
                 $scope.listofServices=["Compute Engine"];
                 $scope.BenchLaunch.provider.driver="compute";
                 break;
+            case "COSMOTE":
+                $scope.listofServices=["Compute"];
+                $scope.BenchLaunch.provider.driver="openstack";
+                break;
             case "Cosmote":
                 $scope.listofServices=["Compute"];
                 $scope.BenchLaunch.provider.driver="openstack";
@@ -203,7 +491,7 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
                 $scope.listofServices=["Compute"];
                 $scope.BenchLaunch.provider.driver="openstack";
                 break;
-            case "Filab":
+            case "FIWARE":
                 $scope.listofServices=["Compute"];
                 $scope.BenchLaunch.provider.driver="openstack";
                 break;
@@ -224,7 +512,7 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
                     "Mounts":[
                     ],
                     "Image":"3alib_image:latest",
-                    "Args":["java", "-jar", "3alibAuditoring.jar", "QoEUserID", "providerName", "serviceName", "auditor"],
+                    "Args":["java", "-jar", "3alibAuditoring.jar", "QoEUserID", "providerName", "serviceName", "auditor","0"],
                     "Secrets":[
                         {
                             "File":{
@@ -262,6 +550,7 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
 
     $scope.launchSLAResults=function() {
         $scope.slaResultsTable=[];
+        $scope.scaleResultsTable=[];
         $scope.SLAResults = dbService.GETSLAResults({id: $scope.qoeUser}, function (success) {
             $scope.SLAResults = $scope.SLAResults.results;
             for(var i=0 ; i< $scope.SLAResults.length; i++ ){
@@ -269,21 +558,63 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
             }
             console.log($scope.SLAResults);
         });
+        $scope.scaleResults = dbService.GETScaleResults({id: $scope.qoeUser}, function (success) {
+            $scope.scaleResults = $scope.scaleResults.results;
+            for(var i=0 ; i< $scope.scaleResults.length; i++ ){
+                $scope.scaleResultsTable.push($scope.scaleResults[i]);
+            }
+            console.log($scope.scaleResults);
+        });
+    };
+    // get running sla auditors
+    $scope.launchSLAAuditors=function() {
+        $scope.slaAuditorsTable=[];
+        $scope.scaleAuditorTable=[];
+        $scope.SLAAuditors = dbService.GETSLAAuditors({id: $scope.qoeUser}, function (success) {
+            $scope.SLAAuditors = $scope.SLAAuditors.results;
+            for(var i=0 ; i< $scope.SLAAuditors.length; i++ ){
+                $scope.slaAuditorsTable.push($scope.SLAAuditors[i]);
+            }
+            console.log($scope.SLAAuditors);
+        });
+        $scope.scaleAuditors = dbService.GETScaleAuditors({id: $scope.qoeUser}, function (success) {
+            $scope.scaleAuditors = $scope.scaleAuditors.results;
+            for(var i=0 ; i< $scope.scaleAuditors.length; i++ ){
+                $scope.scaleAuditorTable.push($scope.scaleAuditors[i]);
+            }
+            console.log($scope.scaleAuditors);
+        });
     };
 
-    $scope.createCustomSLA=function(){
-        $scope.customSLAData='docs={' +
-            '    "id" : "'+$scope.qoeUser+'",' +
-            '    "Provider" : "'+$scope.SLALaunch.providerName+'",' +
-            '    "Service" : "'+$scope.SLALaunch.serviceName+'",' +
-            '    "mail_notification" : "'+$scope.emailNotifications+'",' +
-            '    "custom" : "'+$scope.customAvailability+'",' +
-            '    "Soft_SLA" : '+$scope.softAvailability+',' +
-            '    "Hard_SLA" : '+$scope.hardAvailability+ '' +
-            '}';
-        dbService.SLACreateCustomAgreement($scope.customSLAData,function(success){
-            console.log("custom sla created successfully")
-        });
+    $scope.createCustomSLA=function(type){
+        console.log(type);
+        if(type=="availability") {
+            $scope.customSLAData = 'docs={' +
+                '    "id" : "' + $scope.qoeUser + '",' +
+                '    "Provider" : "' + $scope.SLALaunch.providerName + '",' +
+                '    "Service" : "' + $scope.SLALaunch.serviceName + '",' +
+                '    "mail_notification" : "' + $scope.emailNotifications + '",' +
+                '    "custom" : "' + $scope.customAvailability + '",' +
+                '    "period" : "' + $scope.customPeriod + '",' +
+                '    "Soft_SLA" : ' + $scope.softAvailability + ',' +
+                '    "Hard_SLA" : ' + $scope.hardAvailability + ',' +
+                '    "downtime" : ' + $scope.downtime + '' +
+                '}';
+            dbService.SLACreateCustomAgreement($scope.customSLAData, function (success) {
+                console.log("custom sla created successfully")
+            });
+        }else{
+            $scope.customSLAData = 'docs={' +
+                '    "id" : "' + $scope.qoeUser + '",' +
+                '    "Provider" : "' + $scope.ScaleLaunch.provider + '",' +
+                '    "Service" : "' + $scope.ScaleLaunch.service  + '",' +
+                '    "scale_group" : "' + $scope.ScaleLaunch.scale_group + '"' +
+                '}';
+            dbService.scaleCreateCustomAgreement($scope.customSLAData, function (success) {
+                console.log("custom  scale sla created successfully")
+            });
+
+        }
 
     };
     //new bench configuration
@@ -292,16 +623,14 @@ mainHandler.controller('mainController', ['$scope','userprofile','dbService', fu
         "Data": ""
     };
 $scope.initiateBench2=function(){
-    console.log("teeeeeeeeeeeeeeeeeest1111111111111111111111");
     console.log($scope.BenchLaunch);
-    console.log("teeeeeeeeeeeeeeeeeest2222222222222222222222");
     console.log($scope.BenchScheduler);
 
 };
     $scope.convertVMValues=function(){
         $scope.BenchLaunch.vm.image=$scope.BenchLaunch.vm.image.name;
         $scope.BenchLaunch.vm.size =$scope.BenchLaunch.vm.size.name;
-        $scope.BenchLaunch.provider.network= $scope.BenchLaunch.provider.network.name
+        $scope.BenchLaunch.provider.network= $scope.BenchLaunch.provider.network.name;
         $scope.BenchLaunch.provider.security_group=$scope.BenchLaunch.provider.security_group.name;
 
     };
@@ -358,6 +687,18 @@ $scope.initiateBench2=function(){
             $scope.successBENCHUpdate=true;
         });
     };
+    $scope.deleteScheduler=function(){
+        $scope.scheduleIDidString='criteria={"id":"'+$scope.scheduleID.id+'"}';
+        dbService.schedulerDelete($scope.scheduleIDidString, function (success) {
+            console.log("scheduler Deleted!");
+            dbService.dockerSecretDelete({id:$scope.scheduleID.id},function (success) {
+                console.log("docker secret deleted!")
+
+            });
+            $scope.scheduleID={};
+            $scope.benches=[];
+        });
+    };
     $scope.benchArrayConf = function(){
         $scope.benches=[];
         for (var t=0 ;t<$scope.scheduleID.tests.length; t++){
@@ -381,7 +722,7 @@ $scope.initiateBench2=function(){
     };
 
     $scope.initiateLaunchSLA=function(){
-            $scope.createCustomSLA();
+            $scope.createCustomSLA("availability");
         $scope.SLASecret="ProviderName="+$scope.SLALaunch.providerName+"\n"+
             "ServiceName="+$scope.SLALaunch.serviceName+"\n"+
             "user="+$scope.SLALaunch.cloudUser+"\n"+
@@ -409,7 +750,165 @@ $scope.initiateBench2=function(){
 
         });
     };
-    $scope.benchCategoriesGrouping= 'cmd={"group" : {"ns" : "results", "$reduce" : "function(curr,result){}", "key" : {"provider.id" : 1,"provider.size": 1, "tool": 1, "workload":1}, "initial" : {"total":0}}}';
+    $scope.scaleSecret="";
+    $scope.initiateLaunchScale=function(){
+        console.log($scope.ScaleLaunch.service);
+
+        $scope.scaleSecret="ProviderName="+$scope.ScaleLaunch.provider+"\n"+
+            "ServiceName="+$scope.ScaleLaunch.service+"\n"+
+            "user="+$scope.ScaleLaunch.cloudUser+"\n"+
+            "promised_Scale_Time="+$scope.ScaleLaunch.promised_Scale_Time+"\n"+
+            "promised_cpu_util="+$scope.ScaleLaunch.promised_cpu_util+"\n"+
+            "max_instances="+$scope.ScaleLaunch.max_instances+"\n"+
+            "minutes="+$scope.ScaleLaunch.minutes+"\n"+
+            "scale_group="+$scope.ScaleLaunch.scale_group+"\n"+
+            "APIkey="+$scope.ScaleLaunch.apiKey;
+        // encode secret to base64
+        $scope.scaleSecret=btoa(encodeURIComponent($scope.scaleSecret).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {return String.fromCharCode('0x' + p1);}));
+        console.log($scope.scaleSecret);
+        $scope.ScaleLaunch.scale_group=$scope.ScaleLaunch.scale_group.substring(0,5);
+        $scope.SLALaunchData.Name=$scope.ScaleLaunch.scale_group+"_"+$scope.qoeUser+"_"+$scope.ScaleLaunch.provider+"_"+$scope.ScaleLaunch.service+"_"+"auditor";
+        $scope.SLALaunchData.Data= $scope.scaleSecret;
+
+        $scope.secretCreate=dbService.dockerSecret($scope.SLALaunchData, function (success) {
+            console.log($scope.secretCreate.ID);
+            $scope.SLACreateServiceData.name=$scope.SLALaunchData.Name;
+            $scope.SLACreateServiceData.TaskTemplate.ContainerSpec.Args[3]=$scope.qoeUser;
+            $scope.SLACreateServiceData.TaskTemplate.ContainerSpec.Args[4]=$scope.ScaleLaunch.provider;
+            $scope.SLACreateServiceData.TaskTemplate.ContainerSpec.Args[5]=$scope.ScaleLaunch.service;
+            $scope.SLACreateServiceData.TaskTemplate.ContainerSpec.Args[7]=$scope.ScaleLaunch.scale_group;
+            $scope.SLACreateServiceData.TaskTemplate.ContainerSpec.Secrets[0].File.Name=$scope.SLALaunchData.Name;
+            $scope.SLACreateServiceData.TaskTemplate.ContainerSpec.Secrets[0].SecretID=$scope.secretCreate.ID;
+            $scope.SLACreateServiceData.TaskTemplate.ContainerSpec.Secrets[0].SecretName=$scope.SLALaunchData.Name;
+            $scope.createSLAContainer=dbService.SLACreateService($scope.SLACreateServiceData,function(success){
+                console.log($scope.createSLAContainer);
+                $scope.successScaleLaunch=true ;
+                $scope.createCustomSLA("scale");
+
+            });
+
+        });
+    };
+    //delete auditor
+    $scope.deleteAuditor=function(type){
+
+    };
+    $scope.benchCategoriesGrouping= 'cmd={"group" : {"ns" : "results", "$reduce" : "function(curr,result){}", "key" : {"provider.id" : 1,"provider.size": 1, "test.tool": 1, "test.workload":1}, "initial" : {"total":0}}}';
+    $scope.benchProvidersGrouping= 'cmd={"group" : {"ns" : "results", "$reduce" : "function(curr,result){}", "key" : {"provider.id" : 1,"provider.size": 1}, "initial" : {"total":0}}}';
+    // get analytics
+    $scope.BenchResultsAnalytics=[];
+    $scope.getProviderBenchCategories=function(){
+        $scope.finishRenderAnalytics=false;
+        $scope.BenchResultsAnalytics=[];
+       $scope.ProviderBenchList= dbService.GETBenchGroups($scope.benchProvidersGrouping, function (success) {
+           $scope.ProviderBenchList= $scope.ProviderBenchList.retval;
+           console.log($scope.ProviderBenchList);
+
+           for (var o=0; o<$scope.ProviderBenchList.length; o++){
+               for(var k=0; k<$scope.benchTable.length; k++) {
+                   if ($scope.benchTable[k].provider == $scope.ProviderBenchList[o]['provider.id'] && $scope.benchTable[k].size == $scope.ProviderBenchList[o]['provider.size'] && $scope.benchTable[k].tool == $scope.toolF.id && $scope.benchTable[k].workload == $scope.workloadF.id) {
+                       $scope.BenchResultsAnalytics.push($scope.benchTable[k]);
+                   }
+               }
+           }
+           console.log($scope.BenchResultsAnalytics);
+           $scope.createAnalyticsBarCharts($scope.BenchResultsAnalytics);
+       });
+
+    };
+
+    //function for creating analytics
+
+    $scope.options = {
+        legend: { display: true }
+    };
+    //data for average scores
+
+    $scope.labelsAVG = [];
+    $scope.seriesAVG = [];
+    $scope.dataAVG = [];
+    $scope.dataDEV=[];
+    $scope.dataPVCAVG=[];
+    $scope.dataPVCMAX=[];
+// end of chart tests
+    $scope.dataforavg=[];
+
+    //end of average score Data
+    $scope.createAnalyticsBarCharts=function(benchAnalytics){
+        $scope.labelsAVG = [];
+        $scope.seriesAVG = [];
+        $scope.dataAVG = [];
+        $scope.dataDEV=[];
+        $scope.dataPVCAVG=[];
+        $scope.dataPVCMAX=[];
+// end of chart tests
+        $scope.dataforavg=[];
+        $scope.datafordev=[];
+        $scope.dataforpvcavg=[];
+        $scope.dataforpvcmax=[];
+        if(benchAnalytics[0].metrics.length==1){
+            $scope.dataAVG = [[]];
+            $scope.dataDEV=[[]];
+            $scope.dataPVCAVG=[[]];
+            $scope.dataPVCMAX=[[]];
+            $scope.seriesAVG.push(benchAnalytics[0].metrics[0].name);
+            for(var ko=0;ko<benchAnalytics.length;ko++){
+                $scope.labelsAVG.push(benchAnalytics[ko].provider+"|"+ benchAnalytics[ko].size);
+                $scope.dataAVG[0].push($scope.calcAVG(benchAnalytics[ko].metrics[0].values));
+                $scope.dataDEV[0].push($scope.calcDEV(benchAnalytics[ko].metrics[0].values));
+                $scope.dataPVCAVG[0].push($scope.calcPVCAVG(benchAnalytics[ko].metrics[0].values));
+                $scope.dataPVCMAX[0].push($scope.calcPVCMAX(benchAnalytics[ko].metrics[0].values));
+            }
+        }
+        else{
+            for(var kk=0;kk<benchAnalytics.length; kk++){
+                $scope.labelsAVG.push(benchAnalytics[kk].provider+"|"+ benchAnalytics[kk].size);
+                if(kk==0){
+                    for(var kk2=0; kk2<benchAnalytics[0].metrics.length; kk2++){
+                        $scope.seriesAVG.push(benchAnalytics[0].metrics[kk2].name);
+                    }
+                }
+                for(var kk3=0; kk3<benchAnalytics[0].metrics.length; kk3++){
+                    $scope.dataforavg.push($scope.calcAVG(benchAnalytics[kk].metrics[kk3].values));
+                    $scope.datafordev.push($scope.calcDEV(benchAnalytics[kk].metrics[kk3].values));
+                    $scope.dataforpvcavg.push($scope.calcPVCAVG(benchAnalytics[kk].metrics[kk3].values));
+                    $scope.dataforpvcmax.push($scope.calcPVCMAX(benchAnalytics[kk].metrics[kk3].values));
+                }
+                $scope.dataAVG.push($scope.dataforavg);
+                $scope.dataDEV.push($scope.datafordev);
+                $scope.dataPVCAVG.push($scope.dataforpvcavg);
+                $scope.dataPVCMAX.push($scope.dataforpvcmax);
+                $scope.dataforavg=[];
+                $scope.datafordev=[];
+                $scope.dataforpvcavg=[];
+                $scope.dataforpvcmax=[];
+            }
+        }
+
+        $timeout(function () {
+                $scope.finishRenderAnalytics=true;
+                console.log($scope.dataAVG);
+                console.log($scope.labelsAVG);
+                console.log($scope.seriesAVG);
+            }
+            , 5000);
+
+
+
+
+    };
+
+//end of analytics
+    // edit cost model
+    $scope.getCostModel=function(){
+      $scope.costModelTable= dbService.GETCostModel({id:$scope.qoeUser},function (success) {
+          $scope.costModelTable=$scope.costModelTable.results[0].ProviderCostModels;
+          console.log($scope.costModelTable);
+      });
+
+    };
+
+
     //get benchmarking results
 
     $scope.launchBenchResultsStored=function(){
@@ -427,13 +926,13 @@ $scope.initiateBench2=function(){
             console.log($scope.benchResults);
             $scope.totalItems = $scope.benchResults.length;
             for (var j = 0; j < $scope.benchResults.length; j++) {
-                if ($scope.benchResults[j]['provider.id'] != null && $scope.benchResults[j]['provider.size'] != null && $scope.benchResults[j].workload != null && $scope.benchResults[j].tool != null) {
+                if ($scope.benchResults[j]['provider.id'] != null && $scope.benchResults[j]['provider.size'] != null && $scope.benchResults[j]['test.workload'] != null && $scope.benchResults[j]['test.tool'] != null) {
                     dbService.GETBenchResults(
                         {
                             provider: $scope.benchResults[j]['provider.id'],
                             size: $scope.benchResults[j]['provider.size'],
-                            workload: $scope.benchResults[j].workload,
-                            tool: $scope.benchResults[j].tool
+                            workload: $scope.benchResults[j]['test.workload'],
+                            tool: $scope.benchResults[j]['test.tool']
                         },
                         function (response) {
                             $scope.populateTable(response);
@@ -471,14 +970,14 @@ $scope.initiateBench2=function(){
         $scope.benchTable.push( {
             provider:benchR.results[0].provider.id,
             size:benchR.results[0].provider.size,
-            workload:benchR.results[0].workload,
-            tool:benchR.results[0].tool,
+            workload:benchR.results[0].test.workload,
+            tool:benchR.results[0].test.tool,
             metrics:$scope.tableInput.metrics
         });
         $scope.benchResultForStorage.provider=benchR.results[0].provider.id;
         $scope.benchResultForStorage.size=benchR.results[0].provider.size;
-        $scope.benchResultForStorage.workload=benchR.results[0].workload;
-        $scope.benchResultForStorage.tool=benchR.results[0].tool;
+        $scope.benchResultForStorage.workload=benchR.results[0].test.workload;
+        $scope.benchResultForStorage.tool=benchR.results[0].test.tool;
         $scope.benchResultForStorage.metrics=$scope.tableInput.metrics;
         $scope.dataTablebench.table.push(angular.copy($scope.benchResultForStorage));
         $scope.tableInput.metrics=[];
@@ -571,6 +1070,7 @@ $scope.initiateBench2=function(){
     //start getting private results
     $scope.GETPrivateBench=function(){
         $scope.privateBenchResults=dbService.GETPrivateBENCHResults({visibility:"private",id:$scope.qoeUser},function(success){
+            console.log($scope.privateBenchResults);
         });
 
     };
@@ -633,16 +1133,19 @@ $scope.initiateBench2=function(){
             },
             function(response){
                 if(response.results.length>0){
+                    //$scope.launchBenchResults();
                     $scope.authenticated=true;
                     $scope.qoeUser= response.results[0].userID;
                     $scope.qoeUserInfo= response.results[0];
-                    //$scope.launchBenchResults();
+                    // service initialization
                     $scope.launchBenchResultsStored();
-                    $scope.launchSLAResults();
+                   $scope.launchSLAResults();
                     $scope.GETproviderSLA();
                     $scope.loadSchedules();
                     $scope.getBenchLogs();
-                    $scope.GETPrivateBench();
+                   $scope.GETPrivateBench();
+                   $scope.launchSLAAuditors();
+                    $scope.getCostModel();
                     $scope.benchmarkTests=dbService.GETBenchTEST(function(success){console.log($scope.benchmarkTests)});
 
                 }
@@ -650,7 +1153,7 @@ $scope.initiateBench2=function(){
             })
     };
 
-//chart tests
+//chart for provider SLA
     $scope.labels = ['Amazon',"Azure Compute","Google Compute"];
     $scope.series = ['Series A'];
 

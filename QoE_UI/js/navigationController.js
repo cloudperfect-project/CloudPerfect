@@ -12,10 +12,10 @@ navigationHandler.directive('slaOperations', function(){
         templateUrl:'sla-operations.html'
     }
 });
-navigationHandler.directive('slaQueries', function(){
+navigationHandler.directive('slaAuditor', function(){
     return{
         restrict:'E',
-        templateUrl:'sla-queries.html'
+        templateUrl:'sla-auditor.html'
     }
 });
 navigationHandler.directive('slaMetrics', function(){
@@ -64,5 +64,23 @@ navigationHandler.directive('benchReport', function(){
     return{
         restrict:'E',
         templateUrl:'bench-report.html'
+    }
+});
+navigationHandler.directive('costModel', function(){
+    return{
+        restrict:'E',
+        templateUrl:'cost-model.html'
+    }
+});
+navigationHandler.directive('scaleAuditor', function(){
+    return{
+        restrict:'E',
+        templateUrl:'sla-scale.html'
+    }
+});
+navigationHandler.directive('scaleResults', function(){
+    return{
+        restrict:'E',
+        templateUrl:'scale-results.html'
     }
 });

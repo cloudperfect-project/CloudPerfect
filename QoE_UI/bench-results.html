@@ -1,15 +1,38 @@
 <div class="page-title">
+    <div class="row">
     <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Results</h2>
-    <div class="col-md-6">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-        <input type="text" class="form-control" ng-model="benchS" placeholder="Search for Benchmark..."/>
     </div>
+    <div class="row">
+    <div class="col-md-2">
+        <span class="input-group-addon">Provider Filter</span>
+        <input type="text" class="form-control" ng-model="providerF" placeholder="Provider"/>
+    </div>
+        <div class="col-md-2">
+            <span class="input-group-addon">Service Filter</i></span>
+            <input type="text" class="form-control" ng-model="serviceF" placeholder="VM Size"/>
+        </div>
+        <div class="col-md-2">
+            <span class="input-group-addon">Tool Filter</i></span>
+            <select class="form-control" id="tool-search"
+                    ng-options="tool as tool.id for tool in benchmarkTests"
+                    ng-model="toolF" ng-change="changeTool(toolF)">
+                <option ng-selected="tooF==''" value="">Select Tool</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <span class="input-group-addon">Workload Filter</i></span>
+            <select class="form-control" id="workload-search"
+                    ng-options="workload as workload.id for workload in listofWorkload"
+                    ng-model="workloadF" >
+                <option ng-selected="workloadF==''" value="">Select Workload</option>
+            </select>
+        </div>
+        <div class="col-md-2" >
+            <button ng-show="qoeUser=='testNTUAUser1'" class="btn btn-default" ng-click="storeBenchTable()">Store Table</button>
+            <button ng-show="qoeUser=='testNTUAUser1'" class="btn btn-default" ng-click="launchBenchResults()">Load Results</button>
+        </div>
 </div>
-    <div class="col-md-2" >
-        <button ng-show="qoeUser=='testNTUAUser1'" class="btn btn-default" ng-click="storeBenchTable()">Store Table</button>
-        <button ng-show="qoeUser=='testNTUAUser1'" class="btn btn-default" ng-click="launchBenchResults()">Load Results</button>
-    </div>
+
 </div>
 
 <!-- PAGE CONTENT WRAPPER -->
@@ -34,7 +57,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                       <tr ng-repeat="bench in benchTable | filter:benchS" on-finish-render>
+                       <tr ng-repeat="bench in benchTable | filter:{provider: providerF} | filter:{size: serviceF}| filter:{tool: toolF.id}| filter:{workload: workloadF.id}" on-finish-render>
                            <td class="col-md-1" ng-show="showMore==1"><button class="btn btn-success" ng-click="showMore=2"><i class="fa fa-plus"></i></button></td>
                            <td class="col-md-1" ng-show="showMore==2"><button class="btn btn-warning" ng-click="showMore=1"><i class="fa fa-minus"></i></button></td>
                            <td class="col-md-1" > {{bench.provider}}/{{bench.size}}</td>

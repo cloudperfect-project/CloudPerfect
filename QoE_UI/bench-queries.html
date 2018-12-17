@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Queries</h2>
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Benchmark Analytics </h2>
 </div>
 
 <!-- PAGE CONTENT WRAPPER -->
@@ -10,10 +10,85 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Panel Title</h3>
+                    <h3 class="panel-title">Define Benchmark</h3>
                 </div>
                 <div class="panel-body">
-                    Panel body
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span class="input-group-addon">Tool Filter</i></span>
+                            <select class="form-control" id="tool-search"
+                                    ng-options="tool as tool.id for tool in benchmarkTests"
+                                    ng-model="toolF" ng-change="changeTool(toolF)">
+                                <option ng-selected="tooF==''" value="">Select Tool</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="input-group-addon">Workload Filter</i></span>
+                            <select class="form-control" id="workload-search"
+                                    ng-options="workload as workload.id for workload in listofWorkload"
+                                    ng-model="workloadF" >
+                                <option ng-selected="workloadF==''" value="">Select Workload</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <button class="btn btn-primary " ng-click="getProviderBenchCategories()">Get Aggregated Analytics</button>
+                        </div>
+
+
+                    </div>
+                    <div ng-show="agrAnalytics">
+                    <div class="row" ng-show="finishRenderAnalytics">
+                        </br>
+                        </br>
+                        <h2>Aggregated Analytics</h2>
+                        <div class="col-md-12">
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Provider analytics based on the <b>average </b> benchmark scores of:<b>{{toolF.id}}|{{workloadF.id}}</b> </h3>
+                                </div>
+                                <div class="panel-body" >
+                                    <canvas id="barAVG" class="chart chart-bar" chart-data="dataAVG" chart-labels="labelsAVG" chart-series="seriesAVG" chart-options="options">
+                                    </canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Provider analytics based on the <b>deviation </b> in benchmark scores of:<b>{{toolF.id}}|{{workloadF.id}}</b> </h3>
+                                </div>
+                                <div class="panel-body" >
+                                    <canvas id="barDEV" class="chart chart-bar" chart-data="dataDEV" chart-labels="labelsAVG" chart-series="seriesAVG" chart-options="options">
+                                    </canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Provider analytics based on the <b>Average Performance of Virtual Cores </b> in benchmark scores of:<b>{{toolF.id}}|{{workloadF.id}}</b> </h3>
+                                </div>
+                                <div class="panel-body" >
+                                    <canvas id="barPVCAVG" class="chart chart-bar" chart-data="dataPVCAVG" chart-labels="labelsAVG" chart-series="seriesAVG" chart-options="options">
+                                    </canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Provider analytics based on the <b>MAX Performance of Virtual Cores </b> in benchmark scores of:<b>{{toolF.id}}|{{workloadF.id}}</b> </h3>
+                                </div>
+                                <div class="panel-body" >
+                                    <canvas id="barPVCMAX" class="chart chart-bar" chart-data="dataPVCMAX" chart-labels="labelsAVG" chart-series="seriesAVG" chart-options="options">
+                                    </canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
 

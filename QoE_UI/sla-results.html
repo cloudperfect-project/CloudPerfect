@@ -13,6 +13,7 @@
                     <h3 class="panel-title col-md-12">SLA Results for: <b>{{qoeUser}}</b>
                         <button class="btn btn-default" ng-click="slaF='monthly'">Month</button>
                         <button class="btn btn-default" ng-click="slaF='yearly'">Year</button>
+                        <button class="btn btn-default" ng-click="slaF='week'">week</button>
                         <button class="btn btn-default" ng-click="slaF=''">All</button>
                         <button class="btn btn-info " style="float: right !important;" ng-click="launchSLAResults()"><i class="fa fa-refresh"></i></button>
                     </h3>
@@ -35,6 +36,7 @@
                             <td>{{slaResult.type}}</td>
                             <td ng-if="slaResult.type=='monthly'">{{slaResult.Month}}/{{slaResult.Year}}</td>
                             <td ng-if="slaResult.type=='yearly'">{{slaResult.Year}}</td>
+                            <td ng-if="slaResult.type=='week'">{{slaResult.Date['$date']|date:'dd/MM/yyyy'}}<b>to</b> {{slaResult.DateTo['$date']|date:'dd/MM/yyyy'}}</td>
                             <td>{{slaResult.Provider}}</td>
                             <td>{{slaResult.Service}}</td>
                             <td>{{slaResult['Data-Center']}}</td>

@@ -1,0 +1,86 @@
+/*--------------------------------*- C++ -*----------------------------------*\n| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \    /   O peration     | Version:  2.3.0                                 |
+|   \  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \/     M anipulation  |                                                 |
+*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+/*
+libs
+(
+    "libOpenFOAM.so"
+    "libincompressibleTurbulenceModel.so"
+    "libincompressibleRASModels.so"
+);
+*/
+application     porousSimpleFoam;
+
+startFrom       startTime; // latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         1000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   250;
+
+purgeWrite      1;
+
+
+//- Uncomment to have regular (every 2 hours of run time) restart files
+//secondaryWriteControl    cpuTime; // runtime
+//secondaryWriteInterval   7200;    // seconds
+//secondaryPurgeWrite      1;       // keep all but last dump
+
+
+writeFormat     binary;
+
+writePrecision  6;
+
+writeCompression uncompressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+turbulenceStartTime 50;
+
+functions
+{
+
+    #include "readFields"
+    #include "minMax"
+
+	static_pressure_INLET
+	{
+		type            surfaceFieldValue;
+		functionObjectLibs ("libfieldFunctionObjects.so");
+		enabled         true;
+		writeFields     no;
+		writeControl    outputTime;
+		log             true;
+		valueOutput     true;
+		regionType      patch;
+		surfaceFormat	null;
+		name     	GEO_inlet;
+		operation       areaAverage;
+		fields 		( p );
+	}
+}
+
+
+// ************************************************************************* //

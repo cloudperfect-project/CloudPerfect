@@ -1,0 +1,78 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  dev                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+solvers
+{
+
+	p
+	{
+		solver          GAMG;
+		agglomerator    faceAreaPair;
+		mergeLevels     1;
+		cacheAgglomeration true;
+		nCellsInCoarsestLevel 500;
+		tolerance       1e-08;
+		relTol          0.001;
+		smoother        GaussSeidel;
+		nPreSweeps      0;
+		nPostSweeps     1;
+		nFinestSweeps   2;
+		nVcycles        1;
+	}
+	
+    "(U||k|omega|epsilon)"
+    {
+        solver          smoothSolver;
+        smoother        GaussSeidel;
+        nSweeps         2;
+        tolerance       1e-08;
+        relTol          0.01;
+    }
+
+}
+
+SIMPLE
+
+{
+    nNonOrthogonalCorrectors     0;
+    nUCorrectors                 0;
+    convergence                  1e-3;
+    pMin                         pMin   [1 -1 -2 0 0 0 0] -2000;
+    pMax                         pMax   [1 -1 -2 0 0 0 0] 2000;
+    pressureImplicitPorosity     false;
+    pRefCell 0; 
+    pRefValue 0; 
+}
+
+relaxationFactors
+{
+    p           0.3;
+    U           0.7;
+    k           0.7;
+    epsilon     0.7;
+    omega       0.7;
+    h           0.7;
+}
+
+
+potentialFlow
+{
+    nNonOrthogonalCorrectors 20;
+}
+
+// ************************************************************************* //

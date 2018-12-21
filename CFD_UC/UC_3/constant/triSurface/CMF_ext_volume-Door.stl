@@ -1,0 +1,87 @@
+solid CATIA STL
+   color       0.97255 0.60784 0.9451
+  facet normal -1 0 0
+    outer loop
+      vertex 4.15 0.0115568 -0.7706366
+      vertex 4.15 -1.428443 -0.7706366
+      vertex 4.15 0.0115568 1.268363
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 4.15 0.0115568 1.268363
+      vertex 4.15 -1.428443 -0.7706366
+      vertex 4.15 -1.428443 1.268363
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 3.46 0.0115568 -0.7706366
+      vertex 4.15 0.0115568 -0.7706366
+      vertex 3.46 0.0115568 1.268363
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 3.46 0.0115568 1.268363
+      vertex 4.15 0.0115568 -0.7706366
+      vertex 4.15 0.0115568 1.268363
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 3.46 -1.428443 -0.7706366
+      vertex 3.46 0.0115568 -0.7706366
+      vertex 3.46 -1.428443 1.268363
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 3.46 -1.428443 1.268363
+      vertex 3.46 0.0115568 -0.7706366
+      vertex 3.46 0.0115568 1.268363
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 3.46 -1.428443 -0.7706366
+      vertex 3.46 -1.428443 1.268363
+      vertex 4.15 -1.428443 -0.7706366
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 4.15 -1.428443 -0.7706366
+      vertex 3.46 -1.428443 1.268363
+      vertex 4.15 -1.428443 1.268363
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 4.15 -1.428443 1.268363
+      vertex 3.46 -1.428443 1.268363
+      vertex 4.15 0.0115568 1.268363
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 4.15 0.0115568 1.268363
+      vertex 3.46 -1.428443 1.268363
+      vertex 3.46 0.0115568 1.268363
+    endloop
+  endfacet
+  facet normal 0 -0 1
+    outer loop
+      vertex 4.15 -1.428443 -0.7706366
+      vertex 4.15 0.0115568 -0.7706366
+      vertex 3.46 -1.428443 -0.7706366
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 3.46 -1.428443 -0.7706366
+      vertex 4.15 0.0115568 -0.7706366
+      vertex 3.46 0.0115568 -0.7706366
+    endloop
+  endfacet
+endsolid CATIA STL

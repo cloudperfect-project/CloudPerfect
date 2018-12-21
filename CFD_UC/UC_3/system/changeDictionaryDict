@@ -1,0 +1,43 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+    boundary
+    {
+
+
+        GEO_inlet
+        {
+            type            patch;
+	    physicalType    Inlet;
+        }
+        GEO_outlet
+        {
+            type            patch;
+	    physicalType    Outlet;
+        }
+        GEO_pressure_reference
+        {
+            type            patch;
+	    physicalType    Outlet;
+        }
+    }
+
+
+
+
+// ************************************************************************* //

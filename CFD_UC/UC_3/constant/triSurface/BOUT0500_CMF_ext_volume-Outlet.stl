@@ -1,0 +1,17 @@
+solid CATIA STL
+   color       0.55686 0.27843 0.13333
+  facet normal 0 0 -1
+    outer loop
+      vertex -0.54 -1.008443 0.8543634
+      vertex -0.54 -0.8184432 0.8543634
+      vertex -0.36 -1.008443 0.8543634
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex -0.36 -1.008443 0.8543634
+      vertex -0.54 -0.8184432 0.8543634
+      vertex -0.36 -0.8184432 0.8543634
+    endloop
+  endfacet
+endsolid CATIA STL

@@ -1,0 +1,144 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+/*
+libs
+(
+    "libOpenFOAM.so"
+    "libincompressibleTurbulenceModel.so"
+    "libincompressibleRASModels.so"
+);
+*/
+application     simpleFoam;
+
+startFrom       startTime; // latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         1500;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   100;
+
+purgeWrite      1;
+
+
+//- Uncomment to have regular (every 2 hours of run time) restart files
+//secondaryWriteControl    cpuTime; // runtime
+//secondaryWriteInterval   7200;    // seconds
+//secondaryPurgeWrite      1;       // keep all but last dump
+
+
+writeFormat     binary;
+
+writePrecision  6;
+
+writeCompression uncompressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+turbulenceStartTime 50;
+
+functions
+{
+
+    #include "readFields"
+    #include "minMax"
+
+	static_pressure_INLET
+	{
+		type            surfaceFieldValue;
+		functionObjectLibs ("libfieldFunctionObjects.so");
+		enabled         true;
+		writeFields     no;
+		writeControl   outputTime;
+		log             true;
+		valueOutput     true;
+		regionType         patch;
+		surfaceFormat	null;
+		name      WB_inlet;
+		operation       areaAverage;
+		fields 		( p );
+	}
+	static_pressure_OUTLET
+	{
+		type            surfaceFieldValue;
+		functionObjectLibs ("libfieldFunctionObjects.so");
+		enabled         true;
+		writeFields     no;
+		writeControl   outputTime;
+		log             true;
+		valueOutput     true;
+		regionType         patch;
+		surfaceFormat	null;
+		name      WB_outlet;
+		operation       areaAverage;
+		fields 		( p );
+	}
+	static_pressure_MIDDLE
+	{
+		type            surfaceFieldValue;
+		functionObjectLibs ("libfieldFunctionObjects.so");
+		enabled         true;
+		writeFields     no;
+		writeControl   outputTime;
+		log             true;
+		valueOutput     true;
+		// Type of  source: patch/faceZone/sampledSurface
+		name sampledSurface;
+		regionType sampledSurface;
+		sampledSurfaceDict
+		{
+			//  Sampling  on  triSurface
+			type cuttingPlane;
+			planeType pointAndNormal;
+			pointAndNormalDict
+			{
+				basePoint ( 0 -0.2025 0.07557 );
+				normalVector ( 0 1 0 );
+			}
+			interpolate  true;
+		}
+		operation       areaAverage;
+		fields 		( p );
+	}
+		uniformity_velocity_OUTLET
+	{
+		type            surfaceFieldValue;
+		functionObjectLibs ("libfieldFunctionObjects.so");
+		enabled         true;
+		writeFields     no;
+		writeControl   outputTime;
+		log             true;
+		valueOutput     true;
+		regionType         patch;
+		surfaceFormat	null;
+		name      WB_outlet;
+		operation        CoV  ;
+		fields 		( U );
+	}
+}
+
+
+// ************************************************************************* //

@@ -1,0 +1,9 @@
+minMax
+{
+type fieldMinMax;
+functionObjectLibs ( "libfieldFunctionObjects.so");
+enabled true;
+log true;
+write false;
+fields ( U p );
+}
